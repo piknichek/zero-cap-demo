@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f1f17">
+<title>Zero Cap – Overené eko voľby, ktoré sa oplatia</title>
+<style>
+:root{
+  --green:#16a34a; --green-d:#15803d; --green-l:#dcfce7; --green-xl:#f0fdf4;
+  --ink:#0f1f17; --ink2:#334155; --muted:#64748b; --line:#e5e7eb;
+  --warm:#f97316; --warm-l:#ffedd5; --bg:#f6f7f4; --card:#fff;
+  --r:20px; --shadow:0 6px 24px rgba(15,31,23,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;color:var(--ink);background:#0f1f17;display:flex;justify-content:center;align-items:center;min-height:100vh}
+@media(min-width:500px){body{background:radial-gradient(circle at 20% 20%,#1e3a2a,#0b1510 70%);padding:24px}}
+.phone{position:relative;width:100%;max-width:420px;height:100vh;height:100dvh;background:var(--bg);display:flex;flex-direction:column;overflow:hidden}
+@media(min-width:500px){.phone{height:min(860px,calc(100vh - 48px));border-radius:40px;box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 0 10px #111,0 0 0 12px #333}}
+header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px 10px;background:var(--bg);z-index:5}
+.logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:19px;letter-spacing:-.4px}
+.logo .mark{width:30px;height:30px;border-radius:10px;background:var(--ink);display:grid;place-items:center}
+.logo small{display:block;font-size:10px;font-weight:600;color:var(--muted);letter-spacing:0}
+.toggle{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--ink2);cursor:pointer;user-select:none;background:#fff;border:1px solid var(--line);padding:5px 8px 5px 10px;border-radius:999px}
+.sw{width:30px;height:18px;border-radius:9px;background:#cbd5e1;position:relative;transition:.25s}
+.sw::after{content:"";position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:#fff;transition:.25s;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.toggle.on .sw{background:var(--warm)} .toggle.on .sw::after{left:14px}
+main{flex:1;overflow-y:auto;padding:4px 16px 100px;scroll-behavior:smooth}
+main::-webkit-scrollbar{width:0}
+.view{animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+nav{position:absolute;left:10px;right:10px;bottom:10px;background:var(--ink);border-radius:24px;display:flex;justify-content:space-around;padding:8px 4px;z-index:6;box-shadow:0 10px 30px rgba(0,0,0,.25);transition:transform .3s}
+nav.hide{transform:translateY(140%)}
+nav button{flex:1;background:none;border:0;color:#94a3b8;font:inherit;font-size:10px;font-weight:600;display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0;cursor:pointer;border-radius:16px;transition:.2s}
+nav button svg{width:22px;height:22px}
+nav button.active{color:#fff}
+nav button.active svg{color:#4ade80}
+nav button.scan{color:#fff}
+nav button.scan .fab{width:46px;height:46px;margin-top:-26px;border-radius:16px;background:var(--green);display:grid;place-items:center;box-shadow:0 6px 18px rgba(22,163,74,.5);border:4px solid var(--ink)}
+h1{font-size:24px;letter-spacing:-.6px;line-height:1.15}
+h2{font-size:17px;letter-spacing:-.3px;margin:20px 2px 10px}
+.sub{color:var(--muted);font-size:13px}
+.card{background:var(--card);border-radius:var(--r);padding:16px;box-shadow:var(--shadow);margin-bottom:12px}
+.hero{background:linear-gradient(140deg,#0f1f17 0%,#14532d 100%);color:#fff;border-radius:26px;padding:20px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-40px;top:-40px;width:160px;height:160px;border-radius:50%;background:rgba(74,222,128,.15)}
+.hero .pts{font-size:44px;font-weight:800;letter-spacing:-1.5px;line-height:1}
+.hero .pts span{font-size:16px;font-weight:600;color:#86efac;margin-left:4px}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.12)}
+.pill.warm{background:var(--warm-l);color:#9a3412}
+.pill.green{background:var(--green-l);color:var(--green-d)}
+.bar{height:9px;background:rgba(255,255,255,.15);border-radius:9px;overflow:hidden}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,#4ade80,#a3e635);border-radius:9px;transition:width .8s cubic-bezier(.2,.8,.2,1)}
+.card .bar{background:#eef2ef}
+.card .bar>i{background:var(--green)}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.mini{background:#fff;border-radius:18px;padding:12px;box-shadow:var(--shadow)}
+.mini .ic{font-size:20px}
+.mini b{display:block;font-size:22px;letter-spacing:-.5px;margin-top:4px}
+.mini small{font-size:11px;color:var(--muted);font-weight:600;line-height:1.2;display:block}
+.note{font-size:11px;color:var(--muted);line-height:1.4;padding:10px 12px;background:#fff;border:1px dashed #cbd5e1;border-radius:14px;margin:10px 0}
+.note b{color:var(--ink2)}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:0;font:inherit;font-weight:700;font-size:15px;padding:14px;border-radius:16px;cursor:pointer;transition:transform .12s,opacity .2s;background:var(--ink);color:#fff}
+.btn:active{transform:scale(.97)}
+.btn.green{background:var(--green)} .btn.warm{background:var(--warm)} .btn.ghost{background:#fff;color:var(--ink);border:1.5px solid var(--line)}
+.btn.sm{width:auto;padding:9px 14px;font-size:13px;border-radius:12px}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.scanbig{height:210px;border-radius:28px;background:linear-gradient(150deg,var(--green),#0f766e);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;font-size:19px;font-weight:800;cursor:pointer;border:0;width:100%;box-shadow:0 14px 34px rgba(22,163,74,.35);position:relative;overflow:hidden;font-family:inherit}
+.scanbig .frame{width:70px;height:70px;position:relative}
+.scanbig::before{content:"";position:absolute;left:0;right:0;height:3px;background:rgba(255,255,255,.7);top:20%;animation:sweep 2.4s ease-in-out infinite;box-shadow:0 0 18px #fff}
+@keyframes sweep{0%,100%{top:15%}50%{top:85%}}
+.scanbig small{font-size:12px;font-weight:600;opacity:.85}
+input,textarea,select{width:100%;font:inherit;font-size:14px;padding:12px 14px;border-radius:14px;border:1.5px solid var(--line);background:#fff;color:var(--ink);outline:none;transition:border .2s}
+input:focus,textarea:focus,select:focus{border-color:var(--green)}
+.row{display:flex;gap:8px;align-items:center}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{font-size:11px;font-family:ui-monospace,Menlo,monospace;background:#eef2ef;border:0;padding:5px 8px;border-radius:8px;cursor:pointer;color:var(--ink2)}
+.receipt{background:#fff;border-radius:18px;padding:16px;box-shadow:var(--shadow);font-size:13px;position:relative}
+.receipt .head{text-align:center;border-bottom:1.5px dashed #cbd5e1;padding-bottom:10px;margin-bottom:8px}
+.receipt .head b{font-size:15px}
+.receipt .meta{font-size:10.5px;color:var(--muted);font-family:ui-monospace,Menlo,monospace}
+.item{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 10px;border-radius:12px;margin:3px -6px}
+.item.eco{background:var(--green-l);animation:pop .5s ease both}
+.item .nm{flex:1}
+.item .tag{font-size:10.5px;color:var(--green-d);font-weight:700;display:block}
+.item .pp{font-weight:800;color:var(--green-d);font-size:12px;white-space:nowrap}
+.item .pr{font-variant-numeric:tabular-nums;color:var(--ink2)}
+@keyframes pop{0%{transform:scale(.96);opacity:0}100%{transform:none;opacity:1}}
+.total{display:flex;justify-content:space-between;border-top:1.5px dashed #cbd5e1;margin-top:8px;padding-top:10px;font-weight:700}
+.earn{text-align:center;padding:18px;border-radius:22px;background:linear-gradient(140deg,#0f1f17,#14532d);color:#fff;margin-bottom:12px}
+.earn .big{font-size:46px;font-weight:900;letter-spacing:-1.5px;color:#4ade80}
+.verify{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 10px;gap:16px}
+.spinner{width:72px;height:72px;border-radius:50%;border:6px solid var(--green-l);border-top-color:var(--green);animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.steps{list-style:none;text-align:left;font-size:14px;width:100%;max-width:300px}
+.steps li{padding:8px 0;color:#94a3b8;display:flex;gap:10px;align-items:center;transition:color .3s}
+.steps li.done{color:var(--ink)} .steps li.done .d{background:var(--green);color:#fff;border-color:var(--green)}
+.steps li.act{color:var(--ink);font-weight:700}
+.steps .d{width:22px;height:22px;border-radius:50%;border:2px solid #cbd5e1;display:grid;place-items:center;font-size:12px;flex-shrink:0}
+.badge-ok{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--green-d);background:var(--green-l);padding:5px 10px;border-radius:999px}
+.alert{background:#fef2f2;color:#991b1b;border-radius:18px;padding:16px;font-weight:600;text-align:center;border:1.5px solid #fecaca}
+.voucher{display:flex;gap:12px;align-items:center;background:#fff;border-radius:20px;padding:12px;box-shadow:var(--shadow);margin-bottom:10px;position:relative}
+.voucher .vi{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;font-size:26px;flex-shrink:0}
+.voucher .vt{flex:1;min-width:0}
+.voucher .vt b{font-size:14px;display:block;line-height:1.25}
+.voucher .vt small{font-size:11.5px;color:var(--muted)}
+.voucher .cost{font-size:12px;font-weight:800;color:var(--green-d)}
+.ch{background:#fff;border-radius:20px;padding:14px;box-shadow:var(--shadow);margin-bottom:10px}
+.ch .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:8px}
+.ch .top b{font-size:14px}
+.lb{background:#fff;border-radius:20px;box-shadow:var(--shadow);overflow:hidden}
+.lb .r{display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid #f1f5f9;font-size:14px}
+.lb .r:last-child{border:0}
+.lb .r.me{background:var(--green-xl)}
+.lb .pos{width:26px;height:26px;border-radius:9px;background:#f1f5f9;display:grid;place-items:center;font-weight:800;font-size:12px}
+.lb .r:nth-child(1) .pos{background:#fde68a} .lb .r:nth-child(2) .pos{background:#e2e8f0} .lb .r:nth-child(3) .pos{background:#fed7aa}
+.lb .nm{flex:1;font-weight:700} .lb .nm small{display:block;font-weight:500;color:var(--muted);font-size:11px}
+.lb .mbar{width:70px;height:6px;background:#f1f5f9;border-radius:6px;overflow:hidden} .lb .mbar i{display:block;height:100%;background:var(--green)}
+.lb .v{font-weight:800;font-variant-numeric:tabular-nums;width:52px;text-align:right}
+.seg{display:flex;background:#e9ece8;border-radius:14px;padding:4px;gap:4px;margin:4px 0 10px}
+.seg button{flex:1;border:0;background:none;font:inherit;font-size:13px;font-weight:700;padding:8px;border-radius:10px;cursor:pointer;color:var(--muted)}
+.seg button.on{background:#fff;color:var(--ink);box-shadow:0 2px 6px rgba(0,0,0,.06)}
+.legend{display:grid;gap:8px;font-size:13px}
+.legend div{display:flex;align-items:center;gap:8px}
+.legend i{width:12px;height:12px;border-radius:4px;flex-shrink:0}
+.legend span{flex:1} .legend b{font-variant-numeric:tabular-nums}
+.link{color:var(--green-d);font-weight:700;text-decoration:underline;text-underline-offset:3px;cursor:pointer;font-size:13px}
+.kpi{background:#fff;border-radius:18px;padding:14px;box-shadow:var(--shadow)}
+.kpi small{font-size:11px;color:var(--muted);font-weight:600;display:block}
+.kpi b{font-size:24px;letter-spacing:-.6px;display:block;margin-top:3px}
+.kpi em{font-style:normal;font-size:11px;font-weight:700;color:var(--green-d)}
+.partner-hero{background:linear-gradient(140deg,#7c2d12,#f97316);color:#fff;border-radius:26px;padding:18px;margin-bottom:12px}
+.roi{font-size:48px;font-weight:900;letter-spacing:-2px;line-height:1}
+.modal-bg{position:absolute;inset:0;background:rgba(15,31,23,.55);backdrop-filter:blur(3px);z-index:20;display:flex;align-items:flex-end;animation:fadebg .25s}
+@keyframes fadebg{from{opacity:0}}
+.modal{background:#fff;width:100%;border-radius:28px 28px 0 0;padding:20px 20px 28px;animation:up .35s cubic-bezier(.2,.8,.2,1);max-height:92%;overflow-y:auto}
+@keyframes up{from{transform:translateY(100%)}}
+.grab{width:40px;height:5px;border-radius:5px;background:#e2e8f0;margin:-6px auto 14px}
+.toast{position:absolute;left:50%;top:70px;transform:translateX(-50%) translateY(-20px);background:var(--ink);color:#fff;padding:10px 16px;border-radius:14px;font-size:13px;font-weight:600;opacity:0;transition:.3s;z-index:30;pointer-events:none;max-width:88%;text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.confetti{position:absolute;top:-12px;width:9px;height:14px;border-radius:2px;z-index:25;pointer-events:none;animation:fall 1.8s cubic-bezier(.25,.6,.4,1) forwards}
+@keyframes fall{to{transform:translate(var(--dx),110vh) rotate(var(--rot));opacity:.9}}
+.cam{position:absolute;inset:0;background:#000;z-index:22;display:flex;flex-direction:column}
+.cam video{flex:1;width:100%;object-fit:cover}
+.cam .box{position:absolute;left:50%;top:42%;width:220px;height:220px;transform:translate(-50%,-50%);border:3px solid #4ade80;border-radius:24px;box-shadow:0 0 0 2000px rgba(0,0,0,.45)}
+.cam .ctl{position:absolute;bottom:30px;left:20px;right:20px;text-align:center;color:#fff;font-size:13px}
+.flex-between{display:flex;justify-content:space-between;align-items:center}
+.ideabox{background:linear-gradient(140deg,var(--warm-l),#fff7ed);border-radius:20px;padding:16px;margin-top:6px;border:1px solid #fed7aa}
+.hint{font-size:12px;color:var(--muted);margin-top:6px}
+.levels{display:flex;justify-content:space-between;font-size:10px;color:#a7f3d0;margin-top:6px;font-weight:600}
+/* ---- v2: Plus, Komunita, Eko skóre ---- */
+button:focus-visible,[tabindex]:focus-visible{outline:3px solid #4ade80;outline-offset:2px}
+.logo small{max-width:108px;line-height:1.2}
+.toggle{white-space:nowrap}
+header{padding:14px 14px 10px}
+.hdr-r{display:flex;align-items:center;gap:6px}
+.pluspill{border:0;font:inherit;font-size:11px;font-weight:800;padding:6px 9px;border-radius:999px;cursor:pointer;background:var(--ink);color:#bef264;white-space:nowrap;box-shadow:0 2px 8px rgba(15,31,23,.2);transition:.2s}
+.pluspill.on{background:#bef264;color:var(--ink)}
+nav button{font-size:9.5px;letter-spacing:-.1px}
+.seg.four button{font-size:12px;padding:8px 2px}
+.av{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;font-weight:800;font-size:14px;color:#fff;flex-shrink:0}
+.fr{display:flex;gap:12px;align-items:center;background:#fff;border-radius:20px;padding:12px;box-shadow:var(--shadow);margin-bottom:10px;animation:pop .4s ease both}
+.fr .fi{flex:1;min-width:0}
+.fr .fi b{font-size:14px;display:block}
+.fr .fi small{font-size:11.5px;color:var(--muted)}
+.fr .bar{height:6px;margin-top:6px}
+.stat{text-align:right;font-size:10.5px;color:var(--muted);font-weight:600;white-space:nowrap;line-height:1.3}
+.stat b{display:block;font-size:17px;color:var(--ink)}
+.lb .av{width:30px;height:30px;border-radius:10px;font-size:11px}
+.tagS{display:inline-block;font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:999px;background:#fef3c7;color:#92400e;margin-top:6px}
+.tagM{display:inline-block;font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:999px;background:var(--green-l);color:var(--green-d);margin-top:6px}
+.ev{display:flex;gap:12px;background:#fff;border-radius:20px;padding:12px;box-shadow:var(--shadow);margin-bottom:10px;animation:pop .4s ease both}
+.evdate{width:50px;border-radius:14px;background:var(--green-xl);text-align:center;padding:7px 0;flex-shrink:0;align-self:flex-start}
+.evdate b{font-size:20px;display:block;line-height:1.1}
+.evdate small{font-size:10px;text-transform:uppercase;font-weight:800;color:var(--green-d)}
+.ev .eb{flex:1;min-width:0}
+.ev .eb b{font-size:14px;display:block;line-height:1.25}
+.ev .eb .sub{font-size:11.5px;margin-top:3px}
+.ev .eact{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:8px;flex-wrap:wrap}
+.btn.sm.on{background:var(--green-l);color:var(--green-d)}
+.formgrid{display:grid;gap:10px;margin-top:12px}
+.fl{font-size:12px;font-weight:700;color:var(--ink2);display:grid;gap:4px}
+.bcats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.bcat{position:relative;border:1.5px solid var(--line);background:#fff;border-radius:14px;padding:10px 4px;font:inherit;font-size:11px;font-weight:700;color:var(--ink2);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;line-height:1.2;text-align:center;transition:.15s}
+.bcat span{font-size:20px}
+.bcat.on{border-color:var(--green);background:var(--green-l);color:var(--green-d)}
+.bcats.locked .bcat{opacity:.5}
+.x2{display:inline-block;font-style:normal;font-size:10px;font-weight:800;background:#bef264;color:var(--ink);padding:2px 6px;border-radius:6px;margin-left:4px;vertical-align:1px}
+.bcat .x2{position:absolute;top:-7px;right:-4px;margin:0}
+.lockwrap{position:relative;overflow:hidden}
+.lockwrap .blur{filter:blur(5px);pointer-events:none;user-select:none;opacity:.8}
+.lockover{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:rgba(255,255,255,.4);text-align:center;padding:10px;font-size:14px}
+.plusad{background:var(--ink);color:#fff;border-radius:22px;padding:16px;margin:14px 0 12px;position:relative;overflow:hidden}
+.plusad::after{content:"✦";position:absolute;right:14px;top:4px;font-size:60px;color:rgba(190,242,100,.18)}
+.plusad p{font-size:13px;color:#cbd5e1;margin:6px 0 12px;line-height:1.45;position:relative;z-index:1}
+.scorebox{display:flex;gap:14px;align-items:center;margin-top:10px}
+.days{display:flex;gap:6px;align-items:flex-end;height:66px;flex:1}
+.days div{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end;font-size:10px;color:var(--muted);font-weight:600}
+.days i{display:block;width:100%;border-radius:6px;background:#bbf7d0;transition:height .6s}
+.days .today i{background:var(--green)} .days .today{color:var(--ink);font-weight:800}
+.insight{font-size:12.5px;margin-top:10px;padding:9px 11px;border-radius:12px;background:var(--green-xl);color:var(--ink2)}
+/* Plus – cenník */
+.plusfull{position:absolute;inset:0;z-index:21;background:#f7f7f5;overflow-y:auto;animation:up .35s cubic-bezier(.2,.8,.2,1);padding:16px 14px 32px}
+.plusfull::-webkit-scrollbar{width:0}
+.pf-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.pf-x{width:38px;height:38px;border-radius:50%;border:1px solid #e4e4e0;background:#fff;font-size:18px;cursor:pointer;color:#111;display:grid;place-items:center}
+.pf-title{font-size:30px;font-weight:600;letter-spacing:-.8px;text-align:center;color:#111;margin:4px 0 2px}
+.pf-sub{text-align:center;font-size:13px;color:#6b6b6b;margin-bottom:16px}
+.pf-wrap{background:#fff;border:1px solid #e6e6e2;border-radius:28px;padding:10px;display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:10px}
+.plan{border:1px solid #ececea;border-radius:22px;padding:22px 20px 18px;display:flex;flex-direction:column;background:#fff;color:#111}
+.plan.hl{border-color:#cfe9d6;background:#fcfefc}
+.plan .pn{font-size:34px;font-weight:400;letter-spacing:-1px;line-height:1.1;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ptag{font-size:10.5px;font-weight:700;letter-spacing:0;padding:4px 9px;border-radius:999px;border:1px solid #e4e4e0;color:#555;background:#fff}
+.ptag.g{border-color:#bbf7d0;color:var(--green-d);background:var(--green-xl)}
+.plan .ps{font-size:14px;color:#6b6b6b;margin-top:6px}
+.plan .price{font-size:48px;font-weight:500;letter-spacing:-2px;margin:18px 0 16px;line-height:1}
+.plan .price span{font-size:14px;font-weight:400;color:#8a8a8a;letter-spacing:0;margin-left:4px}
+.pbtn{width:100%;border:0;font:inherit;font-size:15px;font-weight:600;padding:13px 16px;border-radius:999px;background:#111;color:#fff;cursor:pointer;transition:transform .12s,opacity .2s}
+.pbtn:active{transform:scale(.98)} .pbtn[disabled]{opacity:.35;cursor:default}
+.plan ul{list-style:none;margin:20px 0 6px;display:grid;gap:13px;font-size:14px;line-height:1.4;color:#222}
+.plan li{display:flex;gap:10px}
+.plan li::before{content:"✓";font-weight:300;color:#111;flex-shrink:0;width:14px}
+.plan li.plushead{font-weight:700}
+.plan li.plushead::before{content:"✧";color:var(--green)}
+.plan hr{border:0;border-top:1px solid #ececea;margin:0}
+.plan .pfoot{font-size:11.5px;color:#8a8a8a;margin-top:14px;line-height:1.45}
+.pf-ok{border:1px solid #bbf7d0;background:var(--green-xl);color:var(--green-d);border-radius:18px;padding:12px 14px;font-size:13.5px;font-weight:600;margin-bottom:12px;text-align:center;animation:pop .4s ease both}
+.ch .bar,.fr .bar{background:#eef2ef}
+.pf-boost{margin-top:12px;border:1px solid #e6e6e2;box-shadow:none}
+</style>
+</head>
+<body>
+<div class="phone" id="phone">
+  <header>
+    <div class="logo">
+      <div class="mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M7 17 17 7"/></svg></div>
+      <div>Zero Cap<small>Overené eko voľby, ktoré sa oplatia.</small></div>
+    </div>
+    <div class="hdr-r">
+      <button class="pluspill" id="plusBtn" aria-haspopup="dialog">Plus ✦</button>
+      <div class="toggle" id="partnerToggle" role="switch" aria-checked="false" tabindex="0">Pohľad partnera<div class="sw"></div></div>
+    </div>
+  </header>
+  <main id="main"></main>
+  <nav id="nav"></nav>
+  <div class="toast" id="toast"></div>
+</div>
+
+<script>
+"use strict";
+/* ============ KONFIGURÁCIA (upraviteľné čísla) ============ */
+var CONFIG = {
+  rules: {
+    /* Kľúčové slová: porovnáva sa bez ohľadu na veľkosť písmen a diakritiku (pohár = POHAR = pohar).
+       Slová do 3 znakov (napr. "zc") sa hľadajú ako samostatné slovo. "exclude" = vylúčenie falošných zhôd. */
+    cup:     { label:"Vlastný/vratný pohár", icon:"☕", points:10, co2g:30,   unit:"pohár", keywords:["vlastn","pohár","pohar","tégl","tegl","zc","vlastný pohár","vratný pohár","vratnom pohári"],
+               exclude:["jednorazov","plastov","papierov","zmrzlin","vlastná výroba","vlastnej výroby","vlastnej vyroby"] },
+    nobag:   { label:"Bez igelitky/tašky",   icon:"🛍️", points:5,  co2g:20,   unit:"taška", keywords:[] },
+    plant:   { label:"Rastlinné jedlo namiesto mäsa", icon:"🌱", points:25, co2g:1500, unit:null, keywords:["vegán","vegan","rastlin","tofu","cícer","cicer","falafel","ovsen"] },
+    saved:   { label:"Zachránené jedlo (Munch)", icon:"🥡", points:20, co2g:2700, unit:null, keywords:["munch","zachránený","zachranene"] },
+    refill:  { label:"Refill / bez obalu",   icon:"♻️", points:10, co2g:50,   unit:"obal", keywords:["refill","bezobal","čapovan","capovan","bez obalu","do vlastnej nádoby"] },
+    digital: { label:"Digitálny bloček namiesto papierového", icon:"📱", points:3, co2g:0, paperg:2, unit:null, keywords:[] },
+    bike:    { label:"Bajk (zdieľaný bicykel) jazda", icon:"🚲", points:10, co2g:0, unit:null, keywords:["bajk"] }
+  },
+  maxPerActionPerReceipt: 3,
+  /* Živé overenie cez eKasa (neoficiálny endpoint FS SR – pre pilot treba povolenie) */
+  ekasa: {
+    url: "https://ekasa.financnasprava.sk/mdu/api/v1/opd/receipt/find",
+    maxAgeDays: 30,          // staršie bločky sa odmietnu
+    timeoutMs: 12000,
+    noBagKeywords: ["taška","taska","igelit","vrecko","vrecka"], // ak sa nenájde žiadny riadok s týmto, pridá sa bonus "Bez tašky"
+    liveNoBagBonus: true,
+    jsqrUrl: "https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"
+  },
+  levels: [ {name:"Rookie",min:0},{name:"Eco Hero",min:200},{name:"Captain",min:500},{name:"Planet Legend",min:1000} ],
+  ideaPoints: 15,
+  challengeBonus: 30,
+  plus: { price:"2,99 €", boostMultiplier:2, boostCount:2, boostable:["cup","plant","saved","nobag","refill","bike"], eventPoints:10, scorePerAction:25, fundShare:20 }
+};
+
+/* ============ DEMO BLOČKY (eKasa) ============ */
+var RECEIPTS = [
+  { id:"O-7A3F2C91E4B04D1A8E6F", shop:"Kafé Komenius", addr:"Šafárikovo nám. 6, Bratislava", ico:"53124987", type:"cafe", time:"12.11.2026 08:47", digital:true,
+    items:[ {n:"Cappuccino – vlastný pohár", q:1, p:2.60}, {n:"Ovsené mlieko", q:1, p:0.40}, {n:"Maslový croissant", q:1, p:1.90} ] },
+  { id:"O-B21E9D47C3A85F60D2C1", shop:"Bistro Mlyny – jedáleň", addr:"Staré Grunty 36, Bratislava", ico:"47215633", type:"canteen", time:"12.11.2026 12:18", digital:true,
+    items:[ {n:"Vegánske menu – cícerové kari", q:1, p:5.90}, {n:"Šošovicová polievka", q:1, p:1.50}, {n:"Limonáda vo vratnom pohári", q:1, p:1.80} ] },
+  { id:"O-5C8D1F3A9E72B604A1F9", shop:"Fresh Potraviny Ružinov", addr:"Ružinovská 12, Bratislava", ico:"36457821", type:"grocery", time:"11.11.2026 18:05", digital:false,
+    items:[ {n:"Bio jablká 1 kg", q:1, p:2.49}, {n:"Refill šampón 250 ml", q:1, p:3.20}, {n:"Kváskový chlieb", q:1, p:2.80}, {n:"Munch balíček – pekáreň", q:1, p:3.99} ] }
+];
+
+/* ============ STAV (iba v pamäti) ============ */
+var S = {
+  name:"Sára", team:"EUBA",
+  balance:140, lifetime:340, streak:6,
+  counts:{ cup:12, nobag:7, plant:4, saved:2, refill:3, digital:9, bike:5 },
+  used:{}, redeemed:[], ideaSent:false, demoIdx:0,
+  tab:"home", partner:false, lbMode:"teams", lastResult:null,
+  challenges:[
+    { id:"c1", title:"5 káv vo vlastnom pohári", rule:"cup", target:5, progress:3, done:false, ends:"do nedele" },
+    { id:"c2", title:"3 rastlinné obedy", rule:"plant", target:3, progress:1, done:false, ends:"do nedele" },
+    { id:"c3", title:"2× refill namiesto nového obalu", rule:"refill", target:2, progress:0, done:false, ends:"do nedele" }
+  ],
+  teams:[ {n:"EUBA",full:"Ekonomická univerzita",v:1284},{n:"UK",full:"Univerzita Komenského",v:1361},{n:"STU",full:"Slovenská technická univerzita",v:1102},{n:"VŠMU",full:"Vysoká škola múzických umení",v:688},{n:"UKF",full:"Univerzita Konštantína Filozofa",v:745} ],
+  people:[ {n:"Tomáš K.",t:"STU",v:61},{n:"Sára (ty)",t:"EUBA",v:42,me:true},{n:"Nina P.",t:"UK",v:57},{n:"Matej H.",t:"VŠMU",v:33},{n:"Ema R.",t:"UKF",v:38} ],
+  platform:{ actions:18420, cups:7310, bags:4120, packs:1980, co2kg:9840 }
+};
+/* v2 stav: Plus, Komunita, Eko skóre */
+S.plus=false; S.plusJust=false; S.boost=["cup","plant"]; S.comTab="challenges";
+S.today=1; S.history=[40,75,50,100,25,60]; S.weekCups=6; S.lastWeekCups=4; S.week=9;
+S.friends=[
+  {n:"Nina Poláková",c:"#16a34a",life:620,week:14,streak:11},
+  {n:"Tomáš Kováč",c:"#0ea5e9",life:1080,week:12,streak:21},
+  {n:"Lucia Bednárová",c:"#e11d48",life:290,week:10,streak:8},
+  {n:"Ema Rybárová",c:"#f97316",life:410,week:7,streak:4},
+  {n:"Matej Hudák",c:"#8b5cf6",life:180,week:5,streak:2}
+];
+S.friendPool=[ {n:"Kristína Vargová",c:"#ca8a04",life:530,week:8,streak:6},{n:"Adam Šimko",c:"#0d9488",life:95,week:3,streak:1},{n:"Peter Novák",c:"#2563eb",life:240,week:4,streak:3} ];
+S.clubs=[
+  {id:"k1",n:"EUBA Eco Squad",ic:"🎓",m:128,goal:400,prog:312,joined:true},
+  {id:"k2",n:"Mlyny Zero Waste",ic:"♻️",m:86,goal:250,prog:221,joined:false},
+  {id:"k3",n:"Cyklo Petržalka",ic:"🚲",m:54,goal:150,prog:97,joined:false},
+  {id:"k4",n:"Vegan obedy BA",ic:"🌱",m:73,goal:200,prog:168,joined:false}
+];
+S.events=[
+  {id:"e1",t:"Repair café s Circular Slovakia",d:"2026-11-15",time:"14:00",place:"Nová Cvernovka",att:34,sp:true,going:false},
+  {id:"e2",t:"Swap oblečenia",d:"2026-11-19",time:"17:30",place:"EUBA, aula B",att:58,sp:true,going:false},
+  {id:"e3",t:"Eko brunch – Kafé Komenius",d:"2026-11-22",time:"10:00",place:"Kafé Komenius",att:21,sp:true,going:false},
+  {id:"e4",t:"Spoločná jazda na Bajkoch po nábreží",d:"2026-11-23",time:"13:00",place:"Eurovea, stanica Bajk",att:17,sp:false,going:false}
+];
+var VENUES=["Kafé Komenius","Bistro Mlyny","Fresh Potraviny Ružinov – kaviareň","Zelená jedáleň Ružinov"];
+var BOOST_LABEL={cup:"Vlastný pohár",plant:"Rastlinné jedlo",saved:"Zachránené jedlo (Munch)",nobag:"Bez tašky",refill:"Refill",bike:"Bajk"};
+var MONTHS=["január","február","marec","apríl","máj","jún","júl","august","september","október","november","december"];
+var DAYS=["Ne","Po","Ut","St","Št","Pi","So"];
+var VOUCHERS = [
+  { id:"v1", t:"-50 % na kávu vo vlastnom pohári", p:"Kafé Komenius", cost:120, ic:"☕", bg:"#dcfce7" },
+  { id:"v2", t:"Bajk 30 min zdarma", p:"Bajk Bratislava", cost:150, ic:"🚲", bg:"#e0f2fe" },
+  { id:"v3", t:"Munch balíček -2 €", p:"Munch", cost:200, ic:"🥡", bg:"#fef3c7" },
+  { id:"v4", t:"Zero Cap merch – plátená taška", p:"Zero Cap", cost:350, ic:"👜", bg:"#ffedd5" }
+];
+
+/* ============ POMOCNÉ ============ */
+var $ = function(s){ return document.querySelector(s); };
+function esc(s){ return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];}); }
+function fmt(n,d){ return Number(n).toLocaleString("sk-SK",{minimumFractionDigits:d||0,maximumFractionDigits:d||0}); }
+function eur(n){ return fmt(n,2)+" €"; }
+function co2kg(){ var t=0,R=CONFIG.rules; for(var k in S.counts){ if(R[k]) t+=S.counts[k]*R[k].co2g; } return t/1000; }
+function levelOf(life){
+  var L=CONFIG.levels,i=0; for(var j=0;j<L.length;j++){ if(life>=L[j].min) i=j; }
+  var cur=L[i], nxt=L[i+1]||null;
+  var pct = nxt ? Math.round((life-cur.min)/(nxt.min-cur.min)*100) : 100;
+  return {cur:cur,nxt:nxt,pct:pct,idx:i};
+}
+function level(){ return levelOf(S.lifetime); }
+function boostMult(k){ return (S.plus && k && S.boost.indexOf(k)>=0) ? CONFIG.plus.boostMultiplier : 1; }
+function initials(n){ return n.split(" ").map(function(x){return x.charAt(0);}).join("").slice(0,2).toUpperCase(); }
+function ecoScore(){ return Math.min(100, S.today*CONFIG.plus.scorePerAction); }
+function cupWord(n){ return n===1?"pohár":(n>=2&&n<=4?"poháre":"pohárov"); }
+var toastT;
+function toast(msg){ var t=$("#toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(toastT); toastT=setTimeout(function(){t.classList.remove("show");},2400); }
+function confetti(){
+  var ph=$("#phone"), cols=["#16a34a","#4ade80","#f97316","#facc15","#0f1f17","#a3e635"];
+  for(var i=0;i<46;i++){
+    var c=document.createElement("i"); c.className="confetti";
+    c.style.left=(Math.random()*100)+"%"; c.style.background=cols[i%cols.length];
+    c.style.setProperty("--dx",(Math.random()*160-80)+"px"); c.style.setProperty("--rot",(Math.random()*720-360)+"deg");
+    c.style.animationDelay=(Math.random()*0.35)+"s"; if(Math.random()>.5) c.style.borderRadius="50%";
+    ph.appendChild(c); (function(el){ setTimeout(function(){ if(el.parentNode) el.parentNode.removeChild(el); },2400); })(c);
+  }
+}
+function hash(str){ var h=2166136261; for(var i=0;i<str.length;i++){ h^=str.charCodeAt(i); h=Math.imul(h,16777619); } return h>>>0; }
+
+/* ============ IKONY ============ */
+var IC = {
+  home:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>',
+  scan:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M7 12h10"/></svg>',
+  gift:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v8a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-8M7.5 8a2.5 2.5 0 1 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 1 1 0 5"/></svg>',
+  trophy:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0zM17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg>',
+  users:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.2-5.5 6.5-5.5s5.9 1.9 6.5 5.5"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.8c2 .7 3.2 2.4 3.5 5.2"/></svg>',
+  lock:'<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>',
+  eye:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>'
+};
+var TABS=[ {id:"home",l:"Domov",i:"home"},{id:"community",l:"Komunita",i:"users"},{id:"scan",l:"Skenovať",i:"scan"},{id:"rewards",l:"Odmeny",i:"gift"},{id:"transparency",l:"Transparentnosť",i:"eye"} ];
+
+function renderNav(){
+  $("#nav").innerHTML = TABS.map(function(t){
+    if(t.id==="scan") return '<button class="scan" data-tab="scan" aria-label="Skenovať"><span class="fab">'+IC.scan+'</span>'+t.l+'</button>';
+    return '<button data-tab="'+t.id+'" class="'+(S.tab===t.id?"active":"")+'"'+(S.tab===t.id?' aria-current="page"':'')+'>'+IC[t.i].replace('<svg','<svg aria-hidden="true"')+t.l+'</button>';
+  }).join("");
+}
+function go(tab){ S.tab=tab; if(tab!=="scan") S.lastResult=null; render(); $("#main").scrollTop=0; }
+
+/* ============ DOMOV ============ */
+function viewHome(){
+  var L=level(), ch=S.challenges.filter(function(c){return !c.done;})[0]||S.challenges[0];
+  var h=new Date().getHours(), greet = h<10?"Dobré ráno":(h<18?"Ahoj":"Dobrý večer");
+  return '<div class="view">'+
+  '<p class="sub" style="margin:4px 2px 2px">'+greet+', '+esc(S.name)+' 👋</p><h1 style="margin:0 2px 14px">Každá eko voľba sa ráta.</h1>'+
+  '<div class="hero"><div class="flex-between" style="position:relative;z-index:1"><div><div style="font-size:12px;color:#a7f3d0;font-weight:600;margin-bottom:6px">Zero body</div><div class="pts">'+fmt(S.balance)+'<span>b</span></div></div>'+
+  '<div style="text-align:right"><span class="pill">🔥 '+S.streak+' dní v rade</span><div style="margin-top:8px"><span class="pill" style="background:#4ade80;color:#0f1f17">'+L.cur.name+'</span></div></div></div>'+
+  '<div style="margin-top:18px;position:relative;z-index:1"><div class="flex-between" style="font-size:12px;margin-bottom:6px;color:#d1fae5"><span>Level '+(L.idx+1)+' · '+L.cur.name+'</span><span>'+(L.nxt? (L.nxt.min-S.lifetime)+' b do '+L.nxt.name : 'Max level 🌍')+'</span></div>'+
+  '<div class="bar"><i style="width:'+L.pct+'%"></i></div><div class="levels">'+CONFIG.levels.map(function(x){return '<span>'+x.name+'</span>';}).join("")+'</div></div></div>'+
+  '<h2>Tvoj impakt</h2><div class="grid3">'+
+  '<div class="mini"><div class="ic">☕</div><b>'+S.counts.cup+'</b><small>pohárov ušetrených</small></div>'+
+  '<div class="mini"><div class="ic">🛍️</div><b>'+S.counts.nobag+'</b><small>tašiek ušetrených</small></div>'+
+  '<div class="mini"><div class="ic">🌍</div><b>'+fmt(co2kg(),1)+'</b><small>kg CO2e ušetrených</small></div></div>'+
+  '<p class="note">CO2e: <b>predbežné faktory, metodika verejná</b> (záložka Transparentnosť).</p>'+
+  '<h2>Eko skóre dňa</h2>'+scoreCard()+
+  boostCard(false)+
+  plusAd()+
+  '<h2 class="flex-between">Aktívna výzva <span class="link" data-go="community" role="link" tabindex="0">Komunita →</span></h2>'+challengeCard(ch)+
+  '<button class="btn green" data-go="scan" style="margin-top:6px">'+IC.scan.replace('<svg','<svg width="20" height="20"')+' Naskenovať bloček</button>'+
+  '<div class="note" style="margin-top:12px">ℹ️ <b>Pravidlo proti rebound efektu:</b> body nikdy nedostaneš za to, že minieš viac. Iba za overenú eko substitúciu (max. '+CONFIG.maxPerActionPerReceipt+'× rovnaká akcia na bloček).</div>'+
+  '</div>';
+}
+function challengeCard(c){
+  var pct=Math.min(100,Math.round(c.progress/c.target*100)), r=CONFIG.rules[c.rule];
+  return '<div class="ch"><div class="top"><b>'+r.icon+' '+esc(c.title)+'</b>'+(c.done?'<span class="pill green">Splnené ✓</span>':'<span class="pill warm">+'+CONFIG.challengeBonus+' b bonus</span>')+'</div>'+
+  '<div class="bar"><i style="width:'+pct+'%"></i></div><div class="flex-between sub" style="margin-top:6px;font-size:12px"><span>'+c.progress+' / '+c.target+'</span><span>'+c.ends+'</span></div></div>';
+}
+
+/* ============ SKENOVANIE ============ */
+function viewScan(){
+  if(S.lastResult) return viewResult(S.lastResult);
+  var hasCam = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+  return '<div class="view"><h1 style="margin:6px 2px 4px">Skenovať bloček</h1><p class="sub" style="margin:0 2px 14px">Naskenuj QR kód z eKasa bločku. Overíme ho naživo a nájdeme eko voľby.</p>'+
+  (hasCam
+    ? '<button class="scanbig" id="camBtn"><div class="frame">'+IC.scan.replace('<svg','<svg width="70" height="70"')+'</div>Naskenovať bloček<small>Kamera · eKasa QR</small></button>'
+    : '<button class="scanbig" id="demoBtn"><div class="frame">'+IC.scan.replace('<svg','<svg width="70" height="70"')+'</div>Naskenovať bloček<small>Kamera nie je dostupná · demo bloček</small></button>')+
+  '<div class="grid2" style="margin-top:10px"><button class="btn ghost" id="photoBtn">📷 Odfotiť QR</button>'+(hasCam?'<button class="btn ghost" id="demoBtn">🧾 Demo bloček</button>':'<button class="btn ghost" id="demoBtn2">🧾 Ďalší demo bloček</button>')+'</div>'+
+  '<input type="file" id="qrFile" accept="image/*" capture="environment" style="display:none">'+
+  '<div class="card" style="margin-top:14px"><b style="font-size:14px">Alebo vlož ID bločku</b><p class="hint" style="margin:2px 0 10px">Nájdeš ho pod QR kódom (začína na „O-“).</p>'+
+  '<div class="row"><input id="rid" placeholder="O-7A3F…" autocomplete="off" spellcheck="false" style="font-family:ui-monospace,Menlo,monospace"><button class="btn sm" id="ridBtn">Overiť</button></div>'+
+  '<div class="chips">'+RECEIPTS.map(function(r){return '<button class="chip" data-rid="'+r.id+'">'+r.id.slice(0,8)+'… '+esc(r.shop.split(" ")[0])+'</button>';}).join("")+'</div></div>'+
+  '<h2>Čo sa ráta</h2><div class="card" style="padding:6px 14px">'+Object.keys(CONFIG.rules).map(function(k){var r=CONFIG.rules[k];
+    return '<div class="flex-between" style="padding:9px 0;border-bottom:1px solid #f1f5f9;font-size:13px"><span>'+r.icon+' '+r.label+'</span><b style="color:var(--green-d)">+'+r.points+' b</b></div>';}).join("")+
+  '<p class="hint" style="padding:8px 0">CO2 faktory: predbežné faktory, metodika verejná.</p></div>'+
+  '<div class="note">ℹ️ <b>Anti-rebound:</b> body sú za substitúciu, nie za útratu. Väčší nákup = rovnaké body.</div></div>';
+}
+
+function findReceipt(input){
+  var v=String(input||"").trim().toUpperCase().replace(/\s/g,"");
+  if(!v) return null;
+  for(var i=0;i<RECEIPTS.length;i++){ var id=RECEIPTS[i].id.toUpperCase(); if(id===v || (v.length>=6 && id.indexOf(v)===0) || v.indexOf(id)>=0) return RECEIPTS[i]; }
+  return null;
+}
+/* normalizácia: malé písmená + bez diakritiky */
+function norm(s){ return String(s==null?"":s).normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase().replace(/\s+/g," ").trim(); }
+function kwHit(text, kw){
+  kw=norm(kw); if(!kw) return false;
+  if(kw.length<=3) return new RegExp("(^|[^a-z0-9])"+kw.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"([^a-z0-9]|$)").test(text);
+  return text.indexOf(kw)>=0;
+}
+function ecoMatch(name){
+  var R=CONFIG.rules, text=norm(name);
+  for(var k in R){
+    var rule=R[k];
+    if(rule.exclude && rule.exclude.some(function(x){return kwHit(text,x);})) continue;
+    if(rule.keywords.some(function(kw){return kwHit(text,kw);})) return k;
+  }
+  return null;
+}
+function hasBagLine(items){ return items.some(function(it){ return CONFIG.ekasa.noBagKeywords.some(function(kw){ return kwHit(norm(it.n),kw); }); }); }
+function analyze(r){
+  var R=CONFIG.rules, lines=[], perAction={}, pts=0;
+  r.items.forEach(function(it){
+    var hit=ecoMatch(it.n);
+    var p=0;
+    var mult=boostMult(hit);
+    if(hit){ var n=Math.min(Math.max(1,Math.floor(it.q)), CONFIG.maxPerActionPerReceipt-(perAction[hit]||0)); if(n>0){ perAction[hit]=(perAction[hit]||0)+n; p=n*R[hit].points*mult; } }
+    pts+=p; lines.push({n:it.n,q:it.q,p:it.p,eco:hit,pts:p,boost:p>0&&mult>1});
+  });
+  var bonus=[];
+  if((r.type==="grocery" || (r.live && CONFIG.ekasa.liveNoBagBonus)) && !hasBagLine(r.items)){ var bm=boostMult("nobag"); bonus.push({k:"nobag",txt:"Žiadna taška na bločku",pts:R.nobag.points*bm,boost:bm>1}); perAction.nobag=1; pts+=R.nobag.points*bm; }
+  if(r.digital){ bonus.push({k:"digital",txt:"Digitálny bloček",pts:R.digital.points,boost:false}); perAction.digital=1; pts+=R.digital.points; }
+  var total=r.items.reduce(function(a,it){return a+it.q*it.p;},0);
+  var co2=0; for(var a in perAction){ co2+=perAction[a]*R[a].co2g; }
+  var boosted=lines.some(function(l){return l.boost;})||bonus.some(function(b){return b.boost;});
+  return {r:r,lines:lines,bonus:bonus,pts:pts,perAction:perAction,total:total,co2:co2,boosted:boosted};
+}
+function verifyShell(id, live){
+  $("#main").innerHTML='<div class="view verify"><div class="spinner"></div><div><h1 style="font-size:21px">Overujem cez eKasa…</h1><p class="sub" style="margin-top:4px">'+(live?'Živé overenie bločku cez Finančnú správu SR':'Overenie pravosti bločku cez Finančnú správu SR')+'</p></div>'+
+   '<ul class="steps"><li id="s1"><span class="d">1</span>Načítanie QR / ID bločku</li><li id="s2"><span class="d">2</span>Overenie v systéme eKasa (FS SR)</li><li id="s3"><span class="d">3</span>Kontrola duplicity</li><li id="s4"><span class="d">4</span>Rozpoznanie eko položiek</li></ul>'+
+   '<p class="meta sub" style="font-family:ui-monospace,Menlo,monospace;font-size:11px">'+esc(id)+'</p></div>';
+}
+function setStep(n){ /* 1..4: predchádzajúce hotové, n aktívny */
+  for(var i=1;i<=4;i++){ var el=document.getElementById("s"+i); if(!el) continue;
+    if(i<n){ el.className="done"; el.querySelector(".d").textContent="✓"; } else if(i===n){ el.className="act"; } }
+}
+function startVerify(r){
+  if(!r){ showError("Bloček sa nenašiel","Skús ID z ponuky alebo demo bloček."); return; }
+  verifyShell(r.id,false);
+  var ids=["s1","s2","s3","s4"], i=0;
+  function step(){
+    if(i>0){ var p=document.getElementById(ids[i-1]); if(p){ p.className="done"; p.querySelector(".d").textContent="✓"; } }
+    if(i<ids.length){ var c=document.getElementById(ids[i]); if(c) c.className="act"; i++; setTimeout(step, i===2?900:550); }
+    else setTimeout(function(){ finishScan(r); },300);
+  }
+  step();
+}
+/* ============ ŽIVÉ OVERENIE CEZ eKASA ============ */
+function showError(title,msg){ S.tab="scan"; S.busy=false; S.lastResult={err:{title:title,msg:msg}}; render(); }
+
+/* Z textu QR / ručne zadaného reťazca vytiahne online ID (O-<32 hex>) alebo rozpozná offline QR (OKP:...) */
+function parseReceiptCode(raw){
+  var s=String(raw||"").trim();
+  var m=/O-[0-9A-F]{32}/i.exec(s);
+  if(m) return {kind:"online", id:m[0].toUpperCase()};
+  if(/^OKP:/i.test(s) || /(^|[^A-Z])OKP:/i.test(s)){
+    var p=s.replace(/^.*?OKP:/i,"").split(":");
+    return {kind:"offline", cashRegisterCode:p[0], date:p[1], receiptNumber:p[2], total:p[3]};
+  }
+  return {kind:"unknown"};
+}
+/* "23.06.2026 19:43:44" alebo ISO -> Date */
+function parseSkDate(s){
+  if(!s) return null;
+  var m=/^(\d{1,2})\.(\d{1,2})\.(\d{4})(?:\s+(\d{1,2}):(\d{2})(?::(\d{2}))?)?$/.exec(String(s).trim());
+  var d=m? new Date(+m[3],+m[2]-1,+m[1],+(m[4]||0),+(m[5]||0),+(m[6]||0)) : new Date(s);
+  return isNaN(d.getTime())? null : d;
+}
+function ekasaFetch(id){
+  var ctl=("AbortController" in window)? new AbortController():null, to=null;
+  if(ctl) to=setTimeout(function(){ ctl.abort(); }, CONFIG.ekasa.timeoutMs);
+  return fetch(CONFIG.ekasa.url,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify({receiptId:id}),signal:ctl?ctl.signal:undefined})
+    .then(function(resp){ clearTimeout(to); return resp.text().then(function(t){ var j=null; try{ j=JSON.parse(t); }catch(e){} return {status:resp.status,json:j}; }); },
+          function(e){ clearTimeout(to); throw e; });
+}
+/* eKasa odpoveď -> formát appky (vráti {r} alebo {err:[nadpis,text]}) */
+function mapEkasa(id,json){
+  var raw=json && json.receipt;
+  if(!raw) return {err:["Bloček sa v eKasa nenašiel","Skontroluj ID (O- a 32 znakov). Bloček sa môže objaviť v eKasa až po pár minútach."]};
+  var items=(raw.items||[]);
+  var total=Number(raw.totalPrice);
+  var allV=items.length>0 && items.every(function(i){return String(i.itemType||"").toUpperCase()==="V";});
+  if(total<0 || allV || raw.referenceReceiptId) return {err:["Vratka sa nepočíta","Za vrátený tovar (vratku) body nedávame – iba za reálny nákup."]};
+  var d=parseSkDate(raw.issueDate);
+  if(!d) return {err:["Nepodarilo sa overiť dátum","Bloček nemá čitateľný dátum vystavenia."]};
+  var age=(Date.now()-d.getTime())/86400000;
+  if(age>CONFIG.ekasa.maxAgeDays) return {err:["Bloček je starší ako "+CONFIG.ekasa.maxAgeDays+" dní","Body sa dajú získať iba za čerstvé bločky."]};
+  if(age<-1) return {err:["Neplatný dátum bločku","Dátum vystavenia je v budúcnosti."]};
+  var mapped=items.filter(function(i){ return Number(i.price)>=0 && String(i.itemType||"").toUpperCase()!=="V"; }).map(function(i){
+    var q=Number(i.quantity)>0? Number(i.quantity):1, line=Number(i.price)||0;
+    return { n:String(i.name==null?"":i.name).replace(/\s+/g," ").trim()||"(bez názvu)", q:q, p:line/q };
+  });
+  if(!mapped.length) return {err:["Bloček nemá položky","eKasa vrátila bloček bez položiek."]};
+  var org=raw.organization||{}, unit=raw.unit||{};
+  var street=[unit.streetName||org.streetName, unit.buildingNumber||org.buildingNumber].filter(Boolean).join(" ");
+  var addr=[street, unit.municipality||org.municipality].filter(Boolean).join(", ");
+  var p2=function(n){ return (n<10?"0":"")+n; };
+  return {r:{ id:id, live:true, type:"live", digital:false,
+    shop:org.name||unit.name||raw.name||"Predajca (eKasa)", addr:addr||"—", ico:raw.ico||org.ico||"—",
+    time:p2(d.getDate())+"."+p2(d.getMonth()+1)+"."+d.getFullYear()+" "+p2(d.getHours())+":"+p2(d.getMinutes()),
+    items:mapped }};
+}
+function liveVerify(id){
+  if(S.busy) return;
+  id=id.toUpperCase();
+  if(S.used[id]){ S.tab="scan"; S.lastResult={dup:true,r:{id:id}}; render(); return; }
+  S.busy=true; S.tab="scan"; S.lastResult=null; closeCamera();
+  verifyShell(id,true); setStep(2);
+  ekasaFetch(id).then(function(res){
+    if(!res.json) throw new Error("bad_response_"+res.status);
+    var m=mapEkasa(id,res.json);
+    if(m.err){ showError(m.err[0],m.err[1]); return; }
+    setStep(3);
+    setTimeout(function(){ setStep(4); setTimeout(function(){ S.busy=false; S.tab="scan"; finishScan(m.r); },450); },450);
+  }).catch(function(){
+    showError("Overenie cez eKasa sa nepodarilo","Skontroluj pripojenie na internet alebo skús o chvíľu znova. Medzitým môžeš vyskúšať demo bloček (offline režim).");
+  });
+}
+/* Spoločný vstup: QR kamera / fotka / ručné ID */
+function handleCode(raw){
+  var demo=findReceipt(raw); if(demo){ startVerify(demo); return; }
+  var p=parseReceiptCode(raw);
+  if(p.kind==="online") liveVerify(p.id);
+  else if(p.kind==="offline") showError("Offline bloček – zadaj ID","Tento QR je z offline bločku (OKP). Online ID (O-…) nájdeš na bločku pod QR kódom alebo v e-mailovom/digitálnom bločku – zadaj ho ručne.");
+  else showError("Toto nie je eKasa bloček","Nenašli sme ID v tvare O- a 32 znakov. Skús iný QR alebo zadaj ID ručne.");
+}
+
+function finishScan(r){
+  if(S.used[r.id]){ S.lastResult={dup:true,r:r}; render(); return; }
+  var res=analyze(r);
+  S.used[r.id]=true;
+  S.balance+=res.pts; S.lifetime+=res.pts;
+  var actions=0;
+  for(var k in res.perAction){ S.counts[k]=(S.counts[k]||0)+res.perAction[k]; actions+=res.perAction[k]; }
+  S.platform.actions+=actions; S.platform.co2kg+=res.co2/1000;
+  S.platform.cups+=res.perAction.cup||0; S.platform.bags+=res.perAction.nobag||0; S.platform.packs+=res.perAction.refill||0;
+  S.teams.forEach(function(t){ if(t.n===S.team) t.v+=actions; });
+  S.people.forEach(function(p){ if(p.me) p.v+=actions; });
+  S.today+=actions; S.week+=actions; S.weekCups+=res.perAction.cup||0;
+  S.clubs.forEach(function(c){ if(c.joined) c.prog+=actions; });
+  res.done=[];
+  S.challenges.forEach(function(c){
+    if(c.done) return; var add=res.perAction[c.rule]||0;
+    if(add){ c.progress=Math.min(c.target,c.progress+add); if(c.progress>=c.target){ c.done=true; S.balance+=CONFIG.challengeBonus; S.lifetime+=CONFIG.challengeBonus; res.done.push(c.title); } }
+  });
+  if(res.pts>0) S.streak+= (S.streak===6?1:0);
+  S.lastResult=res; render();
+  if(res.pts>0) setTimeout(confetti,150);
+}
+function viewResult(res){
+  if(res.err){
+    return '<div class="view" style="padding-top:10px"><div class="alert">⚠️ '+esc(res.err.title)+'<div style="font-weight:500;font-size:13px;margin-top:6px">'+esc(res.err.msg)+'</div></div>'+
+    '<div class="grid2" style="margin-top:14px"><button class="btn ghost" id="againBtn">Skúsiť znova</button><button class="btn green" id="demoBtn">🧾 Demo bloček</button></div>'+
+    '<p class="hint" style="text-align:center;margin-top:10px">Demo bločky fungujú aj offline.</p></div>';
+  }
+  if(res.dup){
+    return '<div class="view" style="padding-top:10px"><div class="alert">⚠️ Tento bloček už bol použitý<div style="font-weight:500;font-size:13px;margin-top:6px">Každý bloček z eKasa sa dá započítať iba raz. Ochrana proti duplicite.</div></div>'+
+    '<p class="sub" style="text-align:center;margin:10px 0;font-family:ui-monospace,Menlo,monospace;font-size:11px">'+esc(res.r.id)+'</p>'+
+    '<button class="btn" id="againBtn">Skenovať iný bloček</button></div>';
+  }
+  var r=res.r, R=CONFIG.rules;
+  return '<div class="view">'+
+  '<div class="earn"><span class="badge-ok" style="background:rgba(74,222,128,.2);color:#bbf7d0">'+(r.live?'✓ Overené naživo cez eKasa':'✓ Overené cez eKasa · FS SR')+'</span><div class="big">+'+res.pts+' b</div><div style="font-size:13px;color:#d1fae5">'+
+  (res.pts? 'Ušetrené ~'+fmt(res.co2)+' g CO2e <span style="opacity:.7">(predbežné faktory)</span>' : 'Na tomto bločku sme nenašli eko voľbu. Nabudúce vlastný pohár? 😉')+'</div>'+
+  (res.boosted? '<div style="margin-top:10px"><span class="pill" style="background:#bef264;color:#0f1f17">✦ Vrátane 2× bodov v zvýhodnených kategóriách</span></div>':'')+
+  (res.done.length? '<div style="margin-top:10px"><span class="pill warm">🏆 Výzva splnená: '+esc(res.done.join(", "))+' (+'+CONFIG.challengeBonus+' b)</span></div>':'')+'</div>'+
+  '<div class="receipt"><div class="head"><b>'+esc(r.shop)+'</b><div class="meta">'+esc(r.addr)+'<br>IČO '+r.ico+' · '+r.time+'</div></div>'+
+  res.lines.map(function(l){
+    return '<div class="item'+(l.eco?' eco':'')+'"><div class="nm">'+(l.q>1?l.q+'× ':'')+esc(l.n)+(l.eco?'<span class="tag">'+R[l.eco].icon+' '+R[l.eco].label+(l.boost?'<em class="x2">2× Plus</em>':'')+'</span>':'')+'</div>'+
+      (l.eco?'<span class="pp">+'+l.pts+' b</span>':'')+'<span class="pr">'+eur(l.p*l.q)+'</span></div>';
+  }).join("")+
+  res.bonus.map(function(b){ return '<div class="item eco"><div class="nm">'+R[b.k].icon+' '+esc(b.txt)+'<span class="tag">'+R[b.k].label+(b.boost?'<em class="x2">2× Plus</em>':'')+'</span></div><span class="pp">+'+b.pts+' b</span></div>'; }).join("")+
+  '<div class="total"><span>Spolu</span><span>'+eur(res.total)+'</span></div>'+
+  '<div class="meta" style="margin-top:8px;text-align:center">'+esc(r.id)+'</div></div>'+
+  '<div class="note">ℹ️ Body sú za eko substitúciu, nie za sumu nákupu (anti-rebound). Tvoj tím <b>'+S.team+'</b> v Univerzitnej lige získal overené akcie.</div>'+
+  '<div class="grid2"><button class="btn ghost" id="againBtn">Ďalší bloček</button><button class="btn green" data-go="rewards">Odmeny →</button></div></div>';
+}
+
+/* Kamera / fotka – BarcodeDetector (ak je), inak jsQR z CDN */
+var camStream=null, camLoop=null, camBusy=false, jsqrP=null;
+function loadJsQR(){
+  if(window.jsQR) return Promise.resolve(window.jsQR);
+  if(jsqrP) return jsqrP;
+  jsqrP=new Promise(function(res,rej){
+    var sc=document.createElement("script"); sc.src=CONFIG.ekasa.jsqrUrl; sc.async=true;
+    sc.onload=function(){ window.jsQR? res(window.jsQR) : rej(new Error("jsqr")); };
+    sc.onerror=function(){ jsqrP=null; rej(new Error("jsqr_load")); };
+    document.head.appendChild(sc);
+  });
+  return jsqrP;
+}
+function makeDetector(){
+  if(!("BarcodeDetector" in window)) return null;
+  try{ return new window.BarcodeDetector({formats:["qr_code"]}); }catch(e){ return null; }
+}
+/* zdroj (video / bitmap / obrázok) -> text QR alebo null */
+function decodeSource(src,w,h,det){
+  var viaJs=function(){
+    return loadJsQR().then(function(jsQR){
+      var max=900, sc=Math.min(1,max/Math.max(w,h)), cw=Math.round(w*sc), ch=Math.round(h*sc);
+      var cv=document.createElement("canvas"); cv.width=cw; cv.height=ch;
+      var cx=cv.getContext("2d",{willReadFrequently:true}); cx.drawImage(src,0,0,cw,ch);
+      var d=cx.getImageData(0,0,cw,ch), c=jsQR(d.data,cw,ch,{inversionAttempts:"attemptBoth"});
+      return c? c.data : null;
+    });
+  };
+  if(det){
+    return det.detect(src).then(function(codes){ if(codes&&codes.length&&codes[0].rawValue) return codes[0].rawValue; return viaJs().catch(function(){return null;}); },function(){ return viaJs(); });
+  }
+  return viaJs();
+}
+function openCamera(){
+  if(!(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia)){ toast("Kamera nie je dostupná – použi „Odfotiť QR“ alebo demo bloček."); return; }
+  var det=makeDetector();
+  navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:"environment"}},audio:false}).then(function(stream){
+    camStream=stream;
+    var wrap=document.createElement("div"); wrap.className="cam"; wrap.id="cam";
+    wrap.innerHTML='<video playsinline muted autoplay></video><div class="box"></div><div class="ctl"><p style="margin-bottom:12px" id="camMsg">Namier na QR kód na bločku</p><button class="btn ghost" id="camClose">Zrušiť</button></div>';
+    $("#phone").appendChild(wrap);
+    var v=wrap.querySelector("video"); v.srcObject=stream; v.play().catch(function(){});
+    $("#camClose").onclick=closeCamera;
+    if(!det) loadJsQR().catch(function(){ closeCamera(); toast("Skener sa nepodarilo načítať – použi „Odfotiť QR“ alebo ručné ID."); });
+    var lastUnknown=0;
+    camLoop=setInterval(function(){
+      if(camBusy||v.readyState<2||!v.videoWidth) return;
+      camBusy=true;
+      decodeSource(v,v.videoWidth,v.videoHeight,det).then(function(raw){
+        camBusy=false;
+        if(!raw||!$("#cam")) return;
+        var p=parseReceiptCode(raw);
+        if(p.kind==="unknown" && !findReceipt(raw)){ if(Date.now()-lastUnknown>2500){ lastUnknown=Date.now(); var m=$("#camMsg"); if(m) m.textContent="Toto nie je eKasa QR – skús iný"; } return; }
+        closeCamera(); toast("QR načítaný ✓"); handleCode(raw);
+      }).catch(function(){ camBusy=false; });
+    },300);
+  }).catch(function(){ toast("Prístup ku kamere zamietnutý – použi „Odfotiť QR“ alebo demo bloček."); });
+}
+function closeCamera(){
+  clearInterval(camLoop); camLoop=null; camBusy=false;
+  if(camStream){ camStream.getTracks().forEach(function(t){t.stop();}); camStream=null; }
+  var c=$("#cam"); if(c) c.parentNode.removeChild(c);
+}
+function decodePhoto(file){
+  if(!file) return;
+  toast("Čítam QR z fotky…");
+  var det=makeDetector();
+  var load = ("createImageBitmap" in window)
+    ? createImageBitmap(file)
+    : new Promise(function(res,rej){ var u=URL.createObjectURL(file), im=new Image(); im.onload=function(){ res(im); }; im.onerror=rej; im.src=u; });
+  load.then(function(img){
+    var w=img.width||img.naturalWidth, h=img.height||img.naturalHeight;
+    return decodeSource(img,w,h,det);
+  }).then(function(raw){
+    if(!raw){ showError("QR sa nepodarilo prečítať","Skús fotku zblízka a v dobrom svetle, alebo zadaj ID bločku ručne."); return; }
+    handleCode(raw);
+  }).catch(function(){ showError("QR sa nepodarilo prečítať","Fotku sa nepodarilo spracovať. Zadaj ID bločku ručne."); });
+}
+
+/* ============ ODMENY ============ */
+function viewRewards(){
+  return '<div class="view"><div class="flex-between" style="margin:6px 2px 14px"><div><h1>Odmeny</h1><p class="sub">Financované partnermi, nie tvojou útratou.</p></div><span class="pill green" style="font-size:14px">'+fmt(S.balance)+' b</span></div>'+
+  VOUCHERS.map(function(v){
+    var can=S.balance>=v.cost;
+    return '<div class="voucher"><div class="vi" style="background:'+v.bg+'">'+v.ic+'</div><div class="vt"><b>'+esc(v.t)+'</b><small>'+esc(v.p)+'</small><div class="cost">'+v.cost+' b</div></div>'+
+      '<button class="btn sm '+(can?'green':'ghost')+'" data-redeem="'+v.id+'" '+(can?'':'disabled')+'>'+(can?'Uplatniť':'Chýba '+(v.cost-S.balance)+' b')+'</button></div>';
+  }).join("")+
+  (S.redeemed.length? '<h2>Moje vouchery</h2>'+S.redeemed.map(function(x,i){ return '<div class="voucher" style="cursor:pointer" data-show="'+i+'"><div class="vi" style="background:#f1f5f9">🎟️</div><div class="vt"><b>'+esc(x.v.t)+'</b><small>Kód '+x.code+' · platí 30 dní</small></div><span class="link">Zobraziť</span></div>'; }).join("") : '')+
+  '<div class="ideabox"><b style="font-size:15px">💡 Navrhni nápad partnerovi</b><p class="sub" style="margin:4px 0 10px">Ako môže partner zlepšiť svoju eko iniciatívu? Za užitočný návrh <b>+'+CONFIG.ideaPoints+' b</b>.</p>'+
+  (S.ideaSent? '<div class="badge-ok">✓ Návrh odoslaný – ďakujeme! Partner ho uvidí v anonymizovanom prehľade.</div>' :
+  '<select id="ideaP" style="margin-bottom:8px">'+["Kafé Komenius","Bistro Mlyny – jedáleň","Fresh Potraviny Ružinov","Bajk Bratislava"].map(function(p){return '<option>'+p+'</option>';}).join("")+'</select>'+
+  '<textarea id="ideaT" rows="3" placeholder="Napr. zľava aj na čaj vo vlastnom pohári, zálohované poháre pri pokladni…"></textarea>'+
+  '<button class="btn warm" id="ideaBtn" style="margin-top:8px">Odoslať návrh (+'+CONFIG.ideaPoints+' b)</button>')+'</div>'+
+  '<p class="note">Partneri financujú odmeny, lebo im Zero Cap prináša nových a vracajúcich sa zákazníkov – viď „Pohľad partnera“.</p></div>';
+}
+function pseudoQR(seed){
+  var n=25, cell=8, s=hash(seed)||1, out='';
+  function rnd(){ s^=s<<13; s^=s>>>17; s^=s<<5; return (s>>>0)/4294967296; }
+  function finder(x,y){ return '<rect x="'+x*cell+'" y="'+y*cell+'" width="'+7*cell+'" height="'+7*cell+'" fill="#0f1f17"/><rect x="'+(x+1)*cell+'" y="'+(y+1)*cell+'" width="'+5*cell+'" height="'+5*cell+'" fill="#fff"/><rect x="'+(x+2)*cell+'" y="'+(y+2)*cell+'" width="'+3*cell+'" height="'+3*cell+'" fill="#0f1f17"/>'; }
+  function inF(x,y){ return (x<8&&y<8)||(x>n-9&&y<8)||(x<8&&y>n-9); }
+  for(var y=0;y<n;y++) for(var x=0;x<n;x++){ if(!inF(x,y) && rnd()>.52) out+='<rect x="'+x*cell+'" y="'+y*cell+'" width="'+cell+'" height="'+cell+'" rx="1.5"/>'; }
+  return '<svg viewBox="-16 -16 '+(n*cell+32)+' '+(n*cell+32)+'" width="210" height="210" style="display:block;margin:0 auto;background:#fff;border-radius:16px"><g fill="#0f1f17">'+out+'</g>'+finder(0,0)+finder(n-7,0)+finder(0,n-7)+'</svg>';
+}
+function showVoucher(x){
+  modal('<div style="text-align:center"><div style="font-size:34px">'+x.v.ic+'</div><h1 style="font-size:20px;margin:6px 0 2px">'+esc(x.v.t)+'</h1><p class="sub">'+esc(x.v.p)+'</p>'+
+    '<div style="margin:16px 0;padding:12px;border-radius:22px;background:var(--green-xl)">'+pseudoQR(x.code)+'</div>'+
+    '<div style="font-family:ui-monospace,Menlo,monospace;font-size:18px;font-weight:800;letter-spacing:2px">'+x.code+'</div>'+
+    '<p class="hint">Ukáž obsluhe pri pokladni · platí 30 dní · jednorazový</p><button class="btn" data-close style="margin-top:14px">Hotovo</button></div>');
+}
+function modal(html,label){
+  closeModal();
+  var bg=document.createElement("div"); bg.className="modal-bg"; bg.id="modal";
+  bg.innerHTML='<div class="modal" role="dialog" aria-modal="true" aria-label="'+esc(label||"Detail")+'"><div class="grab"></div>'+html+'</div>';
+  bg.addEventListener("click",function(e){ if(e.target===bg || e.target.hasAttribute("data-close")) closeModal(); });
+  $("#phone").appendChild(bg);
+}
+function closeModal(){ var m=$("#modal"); if(m) m.parentNode.removeChild(m); }
+
+/* ============ KOMUNITA ============ */
+function challengesBody(){
+  var teams=S.teams.slice().sort(function(a,b){return b.v-a.v;}), max=teams[0].v;
+  var ppl=S.people.slice().sort(function(a,b){return b.v-a.v;}), pmax=ppl[0].v;
+  return '<p class="sub" style="margin:2px 2px 10px">Týždenné výzvy · reset v pondelok</p>'+
+  S.challenges.map(challengeCard).join("")+
+  '<h2>Univerzitná liga 🎓</h2><div class="seg"><button data-lb="teams" aria-pressed="'+(S.lbMode==="teams")+'" class="'+(S.lbMode==="teams"?"on":"")+'">Tímy</button><button data-lb="people" aria-pressed="'+(S.lbMode==="people")+'" class="'+(S.lbMode==="people"?"on":"")+'">Jednotlivci</button></div>'+
+  '<div class="lb">'+(S.lbMode==="teams"
+    ? teams.map(function(t,i){ return '<div class="r'+(t.n===S.team?' me':'')+'"><span class="pos">'+(i+1)+'</span><span class="nm">'+t.n+(t.n===S.team?' · tvoj tím':'')+'<small>'+t.full+'</small></span><span class="mbar"><i style="width:'+Math.round(t.v/max*100)+'%"></i></span><span class="v">'+fmt(t.v)+'</span></div>'; }).join("")
+    : ppl.map(function(p,i){ return '<div class="r'+(p.me?' me':'')+'"><span class="pos">'+(i+1)+'</span><span class="nm">'+esc(p.n)+'<small>'+p.t+'</small></span><span class="mbar"><i style="width:'+Math.round(p.v/pmax*100)+'%"></i></span><span class="v">'+p.v+'</span></div>'; }).join(""))+
+  '</div><p class="note">🏁 Rebríček sa počíta podľa <b>počtu overených eko akcií</b> – nie podľa minutých eur. Veľký nákup ťa neposunie vyššie.</p>';
+}
+function friendsBody(){
+  var me={n:"Ty ("+S.name+")",c:"#0f1f17",week:S.week,me:true};
+  var all=S.friends.concat([me]).sort(function(a,b){return b.week-a.week;}), max=all[0].week||1;
+  return '<div class="flex-between" style="margin:2px 2px 10px"><b style="font-size:14px">Tvoji priatelia ('+S.friends.length+')</b>'+
+  '<button class="btn sm green" id="addFriend"'+(S.friendPool.length?'':' disabled')+'>＋ Pridať priateľa</button></div>'+
+  S.friends.map(function(f){ var L=levelOf(f.life);
+    return '<div class="fr"><div class="av" style="background:'+f.c+'" aria-hidden="true">'+initials(f.n)+'</div><div class="fi"><b>'+esc(f.n)+'</b><small>Level '+(L.idx+1)+' · '+L.cur.name+(L.nxt?' · '+L.pct+' % do '+L.nxt.name:'')+'</small>'+
+      '<div class="bar" role="progressbar" aria-label="Postup levelu" aria-valuenow="'+L.pct+'" aria-valuemin="0" aria-valuemax="100"><i style="width:'+L.pct+'%"></i></div></div>'+
+      '<div class="stat"><b>'+f.week+'</b>overených<br>tento týždeň<div style="margin-top:3px;color:#c2410c">🔥 '+f.streak+' dní</div></div></div>';
+  }).join("")+
+  '<h2>Rebríček priateľov · tento týždeň</h2><div class="lb">'+
+  all.map(function(p,i){ return '<div class="r'+(p.me?' me':'')+'"><span class="pos">'+(i+1)+'</span><span class="av" style="background:'+p.c+'" aria-hidden="true">'+initials(p.me?S.name:p.n)+'</span><span class="nm">'+esc(p.n)+'<small>overené eko akcie</small></span><span class="mbar"><i style="width:'+Math.round(p.week/max*100)+'%"></i></span><span class="v">'+p.week+'</span></div>'; }).join("")+
+  '</div><p class="note">🏁 Poradie podľa <b>overených eko akcií</b> – nie podľa bodov ani útraty.</p>';
+}
+function clubsBody(){
+  var rank=S.clubs.slice().sort(function(a,b){return b.prog/b.goal-a.prog/a.goal;});
+  return '<p class="sub" style="margin:2px 2px 10px">Spoločný týždenný cieľ – každá overená akcia člena sa ráta klubu.</p>'+
+  S.clubs.map(function(c){ var pct=Math.min(100,Math.round(c.prog/c.goal*100));
+    return '<div class="ch"><div class="top"><div><b>'+c.ic+' '+esc(c.n)+'</b><div class="sub" style="font-size:11.5px">👥 '+fmt(c.m)+' členov'+(c.mine?' · tvoj klub':'')+'</div></div>'+
+      '<button class="btn sm '+(c.joined?'on':'green')+'" data-club="'+c.id+'" aria-pressed="'+c.joined+'">'+(c.joined?'✓ Člen':'Pridať sa')+'</button></div>'+
+      '<div class="bar" role="progressbar" aria-label="Týždenný cieľ klubu" aria-valuenow="'+pct+'" aria-valuemin="0" aria-valuemax="100"><i style="width:'+pct+'%"></i></div>'+
+      '<div class="flex-between sub" style="margin-top:6px;font-size:12px"><span>'+fmt(c.prog)+' / '+fmt(c.goal)+' overených akcií</span><span>'+pct+' %</span></div></div>';
+  }).join("")+
+  '<button class="btn '+(S.plus?'':'ghost')+'" id="createClub" style="margin-top:4px">'+(S.plus?'＋ Vytvoriť klub':IC.lock+' Vytvoriť klub · Plus ✦')+'</button>'+
+  '<h2>Klub vs. klub</h2><div class="lb">'+rank.map(function(c,i){ var pct=Math.min(100,Math.round(c.prog/c.goal*100));
+    return '<div class="r'+(c.joined?' me':'')+'"><span class="pos">'+(i+1)+'</span><span class="nm">'+c.ic+' '+esc(c.n)+'<small>'+fmt(c.m)+' členov · '+fmt(c.prog)+' akcií</small></span><span class="mbar"><i style="width:'+pct+'%"></i></span><span class="v">'+pct+' %</span></div>'; }).join("")+
+  '</div><p class="note">Poradie podľa % splnenia týždenného cieľa – férové pre malé aj veľké kluby.</p>';
+}
+function evDate(d){ var p=d.split("-"); return {day:+p[2], mon:MONTHS[(+p[1])-1].slice(0,3)}; }
+function eventsBody(){
+  var list=S.events.slice().sort(function(a,b){return a.d<b.d?-1:(a.d>b.d?1:0);});
+  return '<button class="btn '+(S.plus?'green':'ghost')+'" id="createEvent" style="margin:2px 0 4px">'+(S.plus?'＋ Vytvoriť vlastný event':IC.lock+' Vytvoriť vlastný event · Plus ✦')+'</button>'+
+  '<p class="hint" style="margin:0 4px 12px;text-align:center">Rezervácia stola u partnera · Partneri dostávajú hostí aj mimo špičky.</p>'+
+  list.map(function(e){ var dd=evDate(e.d);
+    return '<div class="ev"><div class="evdate"><b>'+dd.day+'</b><small>'+dd.mon+'</small></div><div class="eb"><b>'+esc(e.t)+'</b>'+
+      '<div class="sub">🕒 '+esc(e.time)+' · 📍 '+esc(e.place)+'</div>'+
+      (e.sp?'<span class="tagS">Sponzorované partnerom</span> ':'')+(e.mine?'<span class="tagM">✓ Rezervácia stola potvrdená</span>':'')+
+      (e.desc?'<div class="sub" style="margin-top:6px">'+esc(e.desc)+'</div>':'')+
+      '<div class="eact"><span class="sub" style="margin:0">👥 '+e.att+(e.cap?' / '+e.cap:'')+' zúčastnených</span>'+
+      '<button class="btn sm '+(e.going?'on':'green')+'" data-event="'+e.id+'" aria-pressed="'+e.going+'">'+(e.going?'✓ Prihlásený/á':'Zúčastním sa')+'</button></div>'+
+      (e.going?'<div class="hint" style="color:var(--green-d);font-weight:600">Uvidíme sa tam! Pripomienku pošleme deň vopred.</div>':'')+
+      '</div></div>';
+  }).join("");
+}
+function viewCommunity(){
+  var tabs=[["challenges","Výzvy a liga"],["friends","Priatelia"],["clubs","Kluby"],["events","Eventy"]];
+  var body={challenges:challengesBody,friends:friendsBody,clubs:clubsBody,events:eventsBody}[S.comTab]();
+  return '<div class="view"><h1 style="margin:6px 2px 2px">Komunita</h1><p class="sub" style="margin:0 2px 10px">Spolu to ide ľahšie – všetko podľa overených akcií.</p>'+
+  '<div class="seg four">'+tabs.map(function(t){return '<button data-com="'+t[0]+'" aria-pressed="'+(S.comTab===t[0])+'" class="'+(S.comTab===t[0]?"on":"")+'">'+t[1]+'</button>';}).join("")+'</div>'+
+  body+'</div>';
+}
+function createEventForm(){
+  var d=new Date(); d.setDate(d.getDate()+2);
+  var iso=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+  modal('<h1 style="font-size:20px">Vytvoriť vlastný event</h1><p class="sub" style="margin-top:2px">Plus ✦ · rezervujeme ti stôl u partnera</p>'+
+  '<div class="formgrid">'+
+  '<label class="fl">Partner (miesto)<select id="evVenue">'+VENUES.map(function(v){return '<option>'+esc(v)+'</option>';}).join("")+'</select></label>'+
+  '<div class="grid2"><label class="fl">Dátum<input id="evDate" type="date" value="'+iso+'"></label><label class="fl">Čas<input id="evTime" type="time" value="15:00"></label></div>'+
+  '<label class="fl">Počet ľudí<input id="evPeople" type="number" min="2" max="12" value="4" inputmode="numeric"></label>'+
+  '<label class="fl">Názov<input id="evTitle" placeholder="Poďme na eko kávu a zahrajme si Uno" maxlength="60"></label>'+
+  '<label class="fl">Popis<textarea id="evDesc" rows="2" placeholder="Poďme na eko kávu a zahrajme si Uno"></textarea></label>'+
+  '<button class="btn green" id="evSubmit">Rezervovať stôl a vytvoriť event (+'+CONFIG.plus.eventPoints+' b)</button></div>'+
+  '<p class="note">🕒 Partneri dostávajú hostí aj mimo špičky – preto ti stôl radi podržia.</p>', "Vytvoriť vlastný event");
+}
+function submitEvent(){
+  var venue=$("#evVenue").value, title=($("#evTitle").value||"").trim()||"Poďme na eko kávu a zahrajme si Uno";
+  var desc=($("#evDesc").value||"").trim(), n=Math.max(2,Math.min(12,parseInt($("#evPeople").value,10)||4));
+  var date=$("#evDate").value||"2026-11-14", time=$("#evTime").value||"15:00";
+  S.events.push({id:"e"+(S.events.length+1)+"x",t:title,d:date,time:time,place:venue+" · stôl pre "+n,att:1,cap:n,sp:false,going:true,mine:true,desc:desc});
+  S.balance+=CONFIG.plus.eventPoints; S.lifetime+=CONFIG.plus.eventPoints;
+  closeModal(); S.comTab="events"; S.tab="community"; render();
+  toast("✓ Rezervácia stola potvrdená · +"+CONFIG.plus.eventPoints+" b"); confetti();
+}
+function createClubForm(){
+  modal('<h1 style="font-size:20px">Vytvoriť klub</h1><p class="sub" style="margin-top:2px">Plus ✦ · pozvi spolužiakov, susedov či tím</p><div class="formgrid">'+
+  '<label class="fl">Názov klubu<input id="clubName" placeholder="Napr. Ekonómovia na bajkoch" maxlength="40"></label>'+
+  '<label class="fl">Týždenný cieľ (overené akcie)<select id="clubGoal"><option>50</option><option selected>100</option><option>200</option></select></label>'+
+  '<button class="btn green" id="clubSubmit">Vytvoriť klub</button></div>', "Vytvoriť klub");
+}
+
+/* ============ PLUS ============ */
+function updatePlusPill(){ var b=$("#plusBtn"); b.classList.toggle("on",S.plus); b.textContent=S.plus?"Plus ✦ aktívne":"Plus ✦"; b.setAttribute("aria-label",S.plus?"Zero Cap Plus je aktívny":"Zero Cap Plus – zobraziť plány"); }
+function boostCard(inModal){
+  var R=CONFIG.rules, locked=!S.plus, m=MONTHS[new Date().getMonth()];
+  return '<div class="card'+(inModal?' pf-boost':'')+'"><div class="flex-between" style="gap:8px"><b style="font-size:14px">⚡ Zvýhodnené kategórie na '+m+'</b>'+
+  (locked?'<span class="pill" style="background:#f1f5f9;color:var(--ink2)">'+IC.lock+' Plus</span>':'<span class="pill green">'+S.boost.length+' / '+CONFIG.plus.boostCount+'</span>')+'</div>'+
+  '<p class="hint">Vyber si '+CONFIG.plus.boostCount+' kategórie – overené eko položky v nich dostanú '+CONFIG.plus.boostMultiplier+'× body.</p>'+
+  '<div class="bcats'+(locked?' locked':'')+'" role="group" aria-label="Zvýhodnené kategórie">'+CONFIG.plus.boostable.map(function(k){ var on=S.boost.indexOf(k)>=0;
+    return '<button class="bcat'+(on&&!locked?' on':'')+'" data-boost="'+k+'" aria-pressed="'+(on&&!locked)+'"'+(locked?' aria-disabled="true"':'')+'><span aria-hidden="true">'+R[k].icon+'</span>'+BOOST_LABEL[k]+(on&&!locked?'<em class="x2">2×</em>':'')+'</button>'; }).join("")+'</div>'+
+  (locked ? (inModal?'<p class="hint" style="margin-top:10px">Aktivuj Plus a vyber si svoje kategórie.</p>':'<button class="btn sm green" data-plusopen style="margin-top:12px;width:100%">'+IC.lock+' Odomkni s Plus</button>') : '')+
+  '</div>';
+}
+function scoreCard(){
+  var sc=ecoScore(), r=36, c=2*Math.PI*r, d=new Date();
+  var vals=S.history.concat([sc]);
+  var bars=vals.map(function(v,i){ var dd=new Date(d); dd.setDate(d.getDate()-(6-i)); var td=i===6;
+    return '<div class="'+(td?'today':'')+'"><i style="height:'+Math.max(4,Math.round(v*0.46))+'px"></i>'+(td?'Dnes':DAYS[dd.getDay()])+'</div>'; }).join("");
+  var diff=S.weekCups-S.lastWeekCups;
+  var insight='Tento týždeň si ušetrila '+S.weekCups+' '+cupWord(S.weekCups)+', o '+Math.abs(diff)+' '+(diff>=0?'viac':'menej')+' ako minulý.';
+  var inner='<div class="flex-between"><b style="font-size:14px">🌿 Eko skóre dňa</b><span class="sub" style="font-size:11.5px">'+S.today+' overen'+(S.today===1?'á akcia':(S.today<5?'é akcie':'ých akcií'))+' dnes</span></div>'+
+   '<div class="scorebox"><svg viewBox="0 0 92 92" width="92" height="92" role="img" aria-label="Eko skóre dňa '+sc+' zo 100"><circle cx="46" cy="46" r="'+r+'" fill="none" stroke="#dcfce7" stroke-width="10"/>'+
+   '<circle cx="46" cy="46" r="'+r+'" fill="none" stroke="#16a34a" stroke-width="10" stroke-linecap="round" stroke-dasharray="'+(c*sc/100).toFixed(1)+' '+c.toFixed(1)+'" transform="rotate(-90 46 46)"/>'+
+   '<text x="46" y="50" text-anchor="middle" font-size="24" font-weight="800" fill="#0f1f17">'+sc+'</text><text x="46" y="65" text-anchor="middle" font-size="9" fill="#64748b">/ 100</text></svg>'+
+   '<div class="days" role="img" aria-label="Eko skóre za posledných 7 dní: '+vals.join(", ")+'">'+bars+'</div></div>'+
+   '<p class="insight">📈 '+insight+'</p>';
+  if(!S.plus) return '<div class="card lockwrap"><div class="blur" aria-hidden="true">'+inner+'</div><div class="lockover"><b>'+IC.lock+' Denné Eko skóre a týždenný report</b><button class="btn sm green" data-plusopen>Odomkni s Plus</button></div></div>';
+  return '<div class="card">'+inner+'</div>';
+}
+function plusAd(){
+  if(S.plus) return '<div class="note" style="text-align:center">✦ <b>Plus aktívne</b> · '+CONFIG.plus.fundShare+' % z predplatného ide do komunitného fondu (verejne).</div>';
+  return '<div class="plusad"><div class="flex-between" style="position:relative;z-index:1"><b style="font-size:16px">Vyskúšaj Zero Cap Plus ✦</b><span class="pill" style="color:#bef264">'+CONFIG.plus.price+' / mes.</span></div>'+
+  '<p>2× body vo vybraných kategóriách, vlastné eventy s rezerváciou stola a denné Eko skóre. Appka ostáva zadarmo.</p>'+
+  '<button class="btn" style="background:#bef264;color:#0f1f17;position:relative;z-index:1" data-plusopen>Pozrieť plány</button></div>';
+}
+function openPlus(){
+  closeModal(); closePlus(); S.plusJust=false;
+  var el=document.createElement("div"); el.className="plusfull"; el.id="plusModal";
+  el.setAttribute("role","dialog"); el.setAttribute("aria-modal","true"); el.setAttribute("aria-labelledby","pfTitle");
+  $("#phone").appendChild(el); renderPlus();
+  var x=$("#plusClose"); if(x) x.focus({preventScroll:true});
+}
+function closePlus(){ var m=$("#plusModal"); if(m) m.parentNode.removeChild(m); }
+function renderPlus(){
+  var el=$("#plusModal"); if(!el) return; var st=el.scrollTop;
+  var free=["Skenovanie bločkov a body","Odmeny od partnerov","Výzvy a Univerzitná liga","Priatelia, kluby a eventy (pridávanie sa)","Verejný dashboard transparentnosti"];
+  var plus=["Mesačne 2 zvýhodnené kategórie (2× body)","Vytváranie vlastných eventov a klubov + rezervácia stola u partnera","Denné Eko skóre a týždenný report","Exkluzívne výzvy a skorší prístup na sponzorované eventy",CONFIG.plus.fundShare+" % z predplatného ide do komunitného fondu (verejne)"];
+  var li=function(a){ return a.map(function(x){return '<li>'+esc(x)+'</li>';}).join(""); };
+  el.innerHTML='<div class="pf-top"><span class="pluspill'+(S.plus?' on':'')+'" aria-hidden="true">'+(S.plus?'Plus ✦ aktívne':'Zero Cap Plus ✦')+'</span><button class="pf-x" id="plusClose" aria-label="Zavrieť">✕</button></div>'+
+  '<h1 class="pf-title" id="pfTitle">Vyber si plán</h1><p class="pf-sub">Zero Cap ostáva zadarmo. Plus pridáva extra funkcie.</p>'+
+  (S.plusJust?'<div class="pf-ok" role="status">🎉 Plus je aktívny! Vyber si nižšie 2 zvýhodnené kategórie.</div>':'')+
+  '<div class="pf-wrap">'+
+   '<div class="plan"><div class="pn">Free'+(!S.plus?'<span class="ptag">Aktuálny plán</span>':'')+'</div><div class="ps">Eko voľby pre každý deň</div>'+
+   '<div class="price">0 €<span>/ mesiac</span></div><button class="pbtn" id="stayFree">Zostať na Free ↗</button>'+
+   '<ul>'+li(free)+'</ul><div class="pfoot">Aplikácia ostáva navždy zadarmo.</div></div>'+
+   '<div class="plan hl"><div class="pn">Plus<span class="ptag g">'+(S.plus?'Aktuálny plán':'Študentská cena')+'</span></div><div class="ps">Viac bodov, komunita a štatistiky</div>'+
+   '<div class="price">'+CONFIG.plus.price+'<span>/ mesiac</span></div>'+
+   (S.plus?'<button class="pbtn" disabled>✓ Plus je aktívny</button>':'<button class="pbtn" id="activatePlus">Aktivovať Plus (demo) ↗</button>')+
+   '<ul><li class="plushead">Všetko vo Free a navyše:</li><hr>'+li(plus)+'</ul>'+
+   '<div class="pfoot">Liga a rebríčky rátajú overené akcie, nie body – Plus nekupuje víťazstvo. Zrušiť môžeš kedykoľvek.</div></div>'+
+  '</div>'+boostCard(true);
+  el.scrollTop=st;
+}
+function activatePlus(){
+  S.plus=true; S.plusJust=true; updatePlusPill(); renderPlus(); render(); confetti();
+  toast("✦ Zero Cap Plus aktivovaný (demo)");
+  var el=$("#plusModal"); if(el) el.scrollTop=0;
+}
+function toggleBoost(k){
+  if(!S.plus){ if(!$("#plusModal")) openPlus(); else toast("Najprv aktivuj Plus ✦"); return; }
+  var i=S.boost.indexOf(k);
+  if(i>=0) S.boost.splice(i,1); else { S.boost.push(k); if(S.boost.length>CONFIG.plus.boostCount) S.boost.shift(); }
+  render(); renderPlus();
+  toast(S.boost.length? "2× body: "+S.boost.map(function(x){return BOOST_LABEL[x];}).join(" + ") : "Vyber si 2 kategórie");
+}
+
+/* ============ TRANSPARENTNOSŤ ============ */
+var SPLIT=[ {l:"Odmeny pre používateľov",v:60,c:"#16a34a"},{l:"Prevádzka a vývoj",v:20,c:"#0f1f17"},{l:"Overovanie / audit",v:10,c:"#f97316"},{l:"Komunitné projekty",v:10,c:"#a3e635"} ];
+function donut(data,size){
+  var r=60,c=2*Math.PI*r,off=0,segs='';
+  data.forEach(function(d){ var len=d.v/100*c; segs+='<circle r="'+r+'" cx="90" cy="90" fill="none" stroke="'+d.c+'" stroke-width="26" stroke-dasharray="'+(len-2)+' '+(c-len+2)+'" stroke-dashoffset="'+(-off)+'" transform="rotate(-90 90 90)"/>'; off+=len; });
+  return '<svg viewBox="0 0 180 180" width="'+size+'" height="'+size+'">'+segs+'<text x="90" y="86" text-anchor="middle" font-size="26" font-weight="800" fill="#0f1f17">1 €</text><text x="90" y="106" text-anchor="middle" font-size="11" fill="#64748b">od partnera</text></svg>';
+}
+function viewTransparency(){
+  var P=S.platform;
+  return '<div class="view"><h1 style="margin:6px 2px 2px">Transparentnosť</h1><p class="sub" style="margin:0 2px 14px">Verejný dashboard · aktualizované priebežne</p>'+
+  '<div class="card"><b style="font-size:15px">Kam ide každé euro</b><div class="row" style="gap:14px;margin-top:10px">'+donut(SPLIT,140)+
+  '<div class="legend" style="flex:1">'+SPLIT.map(function(d){return '<div><i style="background:'+d.c+'"></i><span>'+d.l+'</span><b>'+d.v+' %</b></div>';}).join("")+'</div></div></div>'+
+  '<h2>Overené spolu (celá komunita)</h2><div class="grid2">'+
+  '<div class="kpi"><small>Overené eko akcie</small><b>'+fmt(P.actions)+'</b><em>cez eKasa</em></div>'+
+  '<div class="kpi"><small>CO2e ušetrené</small><b>'+fmt(P.co2kg/1000,2)+' t</b><em>predbežné faktory</em></div>'+
+  '<div class="kpi"><small>Jednorazové poháre</small><b>'+fmt(P.cups)+'</b><em>nevzniklo</em></div>'+
+  '<div class="kpi"><small>Tašky + obaly</small><b>'+fmt(P.bags+P.packs)+'</b><em>nevzniklo</em></div></div>'+
+  '<div class="card" style="margin-top:12px"><b style="font-size:14px">Faktory na akciu</b>'+Object.keys(CONFIG.rules).map(function(k){var r=CONFIG.rules[k];
+    return '<div class="flex-between" style="padding:7px 0;border-bottom:1px solid #f1f5f9;font-size:13px"><span>'+r.icon+' '+r.label+'</span><span class="sub">'+(r.co2g?'~'+fmt(r.co2g)+' g CO2e':(r.paperg?'~'+r.paperg+' g papiera':'—'))+' · '+r.points+' b</span></div>';}).join("")+
+  '<p class="hint" style="margin-top:8px">⚠️ Predbežné faktory, metodika verejná. Hodnoty prejdú nezávislou revíziou.</p>'+
+  '<p style="margin-top:10px"><span class="link" id="methodLink">Metodika (GHG Protocol – avoided emissions)</span></p></div>'+
+  '<div class="card"><b style="font-size:14px">✦ Zero Cap Plus → komunitný fond</b><p class="sub" style="margin-top:6px">'+CONFIG.plus.fundShare+' % z každého predplatného Plus ide do komunitného fondu. Čerpanie zverejňujeme tu. Liga ráta overené akcie, nie body – Plus nekupuje víťazstvo.</p></div>'+
+  '<div class="note">🔒 Overenie: každý bloček sa overuje cez eKasa (Finančná správa SR) a môže sa použiť len raz. Body nikdy za vyššiu útratu.</div></div>';
+}
+function showMethod(){
+  modal('<h1 style="font-size:20px">Metodika</h1><p class="sub" style="margin:4px 0 12px">GHG Protocol – avoided emissions (porovnanie so základným scenárom)</p>'+
+  '<div style="font-size:13.5px;line-height:1.55;color:var(--ink2)"><p><b>1. Základný scenár:</b> čo by si zvolil bez Zero Cap (jednorazový pohár, igelitka, mäsité jedlo, nový obal).</p><p style="margin-top:8px"><b>2. Substitúcia:</b> overená položka z eKasa bločku nahrádza základný scenár.</p><p style="margin-top:8px"><b>3. Faktor:</b> rozdiel emisií (g CO2e) z verejných LCA databáz – zatiaľ predbežné hodnoty.</p><p style="margin-top:8px"><b>4. Konzervatívnosť:</b> limit '+CONFIG.maxPerActionPerReceipt+'× akcia na bloček, žiadne body za útratu (anti-rebound).</p><p style="margin-top:8px"><b>5. Audit:</b> 10 % rozpočtu ide na overovanie a nezávislý audit.</p></div><button class="btn" data-close style="margin-top:16px">Rozumiem</button>');
+}
+
+/* ============ POHĽAD PARTNERA ============ */
+function viewPartner(){
+  var cost=68, rev=96, roi=Math.round((rev-cost)/cost*100);
+  var hours=[["7",18],["8",46],["9",38],["10",22],["11",17],["12",29],["13",24],["14",15],["15",19],["16",26],["17",12]], hmax=46;
+  var bw=24,gap=6,H=110;
+  var bars=hours.map(function(h,i){ var bh=Math.round(h[1]/hmax*H), x=i*(bw+gap); return '<rect x="'+x+'" y="'+(H-bh)+'" width="'+bw+'" height="'+bh+'" rx="6" fill="'+(h[1]===hmax?'#f97316':'#16a34a')+'"/><text x="'+(x+bw/2)+'" y="'+(H+14)+'" text-anchor="middle" font-size="10" fill="#64748b">'+h[0]+'</text>'; }).join("");
+  var tops=[["Káva vo vlastnom pohári",58],["Rastlinné mlieko",21],["Bez papierového bločku",14],["Zachránené pečivo",7]];
+  return '<div class="view"><div class="partner-hero"><div style="font-size:12px;font-weight:700;opacity:.85">PARTNER · Kafé Komenius</div><h1 style="color:#fff;margin:4px 0 12px">November 2026</h1>'+
+  '<div class="flex-between"><div><div style="font-size:12px;opacity:.85">ROI programu</div><div class="roi">+'+roi+' %</div></div><div style="text-align:right;font-size:12px;opacity:.9">Prínos '+eur(rev)+' (marža + poháre)<br>Náklady '+eur(cost)+' (poplatok 49 € + odmeny)</div></div></div>'+
+  '<div class="grid2"><div class="kpi"><small>Noví zákazníci cez Zero Cap</small><b>45</b><em>+23 % m/m</em></div><div class="kpi"><small>Vracajúci sa zákazníci</small><b>41 %</b><em>vs. 27 % bez appky</em></div>'+
+  '<div class="kpi"><small>Ušetrené poháre</small><b>100</b><em>≈ 3 kg CO2e · −15 € na obaloch</em></div><div class="kpi"><small>Uplatnené vouchery</small><b>13</b><em>Ø košík 6,10 €</em></div></div>'+
+  '<div class="card" style="margin-top:12px"><b style="font-size:14px">Náklady na odmeny vs. extra tržby</b>'+
+  '<div style="margin-top:10px;font-size:12px"><div class="flex-between"><span>Náklady na odmeny</span><b>'+eur(cost)+'</b></div><div class="bar" style="margin:4px 0 10px"><i style="width:'+Math.round(cost/rev*100)+'%;background:#f97316"></i></div>'+
+  '<div class="flex-between"><span>Extra tržby od Zero Cap zákazníkov</span><b>'+eur(rev)+'</b></div><div class="bar" style="margin-top:4px"><i style="width:100%"></i></div></div></div>'+
+  '<div class="card"><b style="font-size:14px">Špičkové hodiny (eko akcie)</b><svg viewBox="0 0 '+(hours.length*(bw+gap))+' '+(H+18)+'" width="100%" style="margin-top:10px;display:block">'+bars+'</svg></div>'+
+  '<div class="card"><b style="font-size:14px">Top eko položky</b>'+tops.map(function(t){return '<div style="margin-top:9px;font-size:13px"><div class="flex-between"><span>'+t[0]+'</span><b>'+t[1]+' %</b></div><div class="bar" style="margin-top:4px"><i style="width:'+t[1]+'%"></i></div></div>';}).join("")+'</div>'+
+  '<div class="card"><b style="font-size:14px">💡 Nápady od komunity</b><p style="font-size:13px;margin-top:8px;color:var(--ink2)">„Zľava aj na čaj vo vlastnom pohári“ · „Zálohované poháre pri pokladni“ · „Vegánsky croissant“</p><p class="hint">'+(S.ideaSent?'Nový návrh pribudol práve teraz.':'12 návrhov tento mesiac')+'</p></div>'+
+  '<div class="note">🔒 <b>GDPR:</b> iba agregované dáta, žiadne osobné údaje bez súhlasu. Partner nevidí mená ani históriu nákupov jednotlivcov.</div></div>';
+}
+
+/* ============ RENDER + UDALOSTI ============ */
+function render(){
+  var m=$("#main");
+  $("#nav").classList.toggle("hide",S.partner);
+  if(S.partner){ m.innerHTML=viewPartner(); return; }
+  renderNav();
+  var v={home:viewHome,scan:viewScan,rewards:viewRewards,community:viewCommunity,transparency:viewTransparency}[S.tab]||viewHome;
+  m.innerHTML=v();
+}
+document.addEventListener("click",function(e){
+  var t=e.target.closest ? e.target.closest("button,[data-show],.link,.toggle") : null;
+  if(!t) return;
+  if(t.id==="plusBtn" || t.hasAttribute("data-plusopen")){ openPlus(); return; }
+  if(t.id==="plusClose"||t.id==="stayFree"){ closePlus(); $("#plusBtn").focus({preventScroll:true}); return; }
+  if(t.id==="activatePlus"){ activatePlus(); return; }
+  if(t.dataset.boost){ toggleBoost(t.dataset.boost); return; }
+  if(t.dataset.com){ S.comTab=t.dataset.com; render(); return; }
+  if(t.id==="addFriend"){ var f=S.friendPool.shift(); if(!f) return; f.isNew=true; S.friends.push(f); render(); toast("👋 "+f.n+" je teraz tvoj/a priateľ/ka"); return; }
+  if(t.dataset.club){ var c=S.clubs.filter(function(x){return x.id===t.dataset.club;})[0]; c.joined=!c.joined; c.m+=c.joined?1:-1; render(); toast(c.joined?"Vitaj v klube "+c.n+" 🎉":"Opustila si klub "+c.n); return; }
+  if(t.id==="createClub"){ if(!S.plus){ openPlus(); toast("Vytváranie klubov je Plus funkcia ✦"); return; } createClubForm(); return; }
+  if(t.id==="clubSubmit"){ var nm=($("#clubName").value||"").trim(); if(nm.length<3){ toast("Zadaj názov klubu (3+ znaky)"); return; }
+    S.clubs.push({id:"k"+(S.clubs.length+1),n:nm,ic:"⭐",m:1,goal:+$("#clubGoal").value,prog:0,joined:true,mine:true}); closeModal(); render(); confetti(); toast("Klub „"+nm+"“ vytvorený ✓"); return; }
+  if(t.dataset.event){ var ev=S.events.filter(function(x){return x.id===t.dataset.event;})[0]; ev.going=!ev.going; ev.att+=ev.going?1:-1; render(); toast(ev.going?"✓ Si prihlásená na „"+ev.t+"“":"Účasť zrušená"); return; }
+  if(t.id==="createEvent"){ if(!S.plus){ openPlus(); toast("Vlastné eventy sú Plus funkcia ✦"); return; } createEventForm(); return; }
+  if(t.id==="evSubmit"){ submitEvent(); return; }
+  if(t.dataset.tab){ go(t.dataset.tab); return; }
+  if(t.dataset.go){ go(t.dataset.go); return; }
+  if(t.id==="partnerToggle"){ togglePartner(); return; }
+  if(t.id==="demoBtn"||t.id==="demoBtn2"){ var r=RECEIPTS[S.demoIdx%RECEIPTS.length]; S.demoIdx++; startVerify(r); return; }
+  if(t.id==="camBtn"){ openCamera(); return; }
+  if(t.id==="photoBtn"){ var qf=$("#qrFile"); if(qf){ qf.value=""; qf.click(); } return; }
+  if(t.id==="ridBtn"){ handleCode($("#rid").value); return; }
+  if(t.dataset.rid){ $("#rid").value=t.dataset.rid; return; }
+  if(t.id==="againBtn"){ S.lastResult=null; render(); return; }
+  if(t.dataset.lb){ S.lbMode=t.dataset.lb; render(); return; }
+  if(t.id==="methodLink"){ showMethod(); return; }
+  if(t.dataset.redeem){
+    var v=VOUCHERS.filter(function(x){return x.id===t.dataset.redeem;})[0];
+    if(!v||S.balance<v.cost) return;
+    S.balance-=v.cost;
+    var code="ZC-"+(hash(v.id+Date.now()+Math.random()).toString(36).toUpperCase().slice(0,6));
+    var x={v:v,code:code}; S.redeemed.unshift(x); render(); showVoucher(x); toast("−"+v.cost+" b · voucher aktivovaný 🎉"); return;
+  }
+  if(t.dataset.show!==undefined && t.dataset.show!==""){ showVoucher(S.redeemed[+t.dataset.show]); return; }
+  if(t.id==="ideaBtn"){
+    var txt=($("#ideaT").value||"").trim();
+    if(txt.length<10){ toast("Napíš aspoň krátku vetu (10+ znakov) ✍️"); return; }
+    S.ideaPartner=$("#ideaP").value; S.ideaSent=true; S.balance+=CONFIG.ideaPoints; S.lifetime+=CONFIG.ideaPoints; render(); confetti(); toast("+"+CONFIG.ideaPoints+" b za nápad · ďakujeme!"); return;
+  }
+});
+function togglePartner(){
+  S.partner=!S.partner; var tg=$("#partnerToggle"); tg.classList.toggle("on",S.partner); tg.setAttribute("aria-checked",String(S.partner));
+  closeCamera(); closeModal(); closePlus(); render(); $("#main").scrollTop=0;
+}
+$("#partnerToggle").addEventListener("keydown",function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); togglePartner(); } });
+document.addEventListener("keydown",function(e){
+  if(e.key==="Enter" && e.target && e.target.id==="rid"){ handleCode(e.target.value); }
+  if(e.key==="Escape"){ if($("#modal")) closeModal(); else if($("#plusModal")){ closePlus(); $("#plusBtn").focus({preventScroll:true}); } }
+  if((e.key==="Enter"||e.key===" ") && e.target && e.target.classList && e.target.classList.contains("link") && e.target.dataset.go){ e.preventDefault(); go(e.target.dataset.go); }
+});
+document.addEventListener("change",function(e){ if(e.target && e.target.id==="qrFile"){ decodePhoto(e.target.files && e.target.files[0]); } });
+updatePlusPill();
+render();
+</script>
+</body>
+</html>
