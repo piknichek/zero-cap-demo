@@ -131,7 +131,7 @@ input:focus,textarea:focus,select:focus{border-color:var(--green)}
 .kpi b{font-size:24px;letter-spacing:-.6px;display:block;margin-top:3px}
 .kpi em{font-style:normal;font-size:11px;font-weight:700;color:var(--green-d)}
 .partner-hero{background:linear-gradient(140deg,#7c2d12,#f97316);color:#fff;border-radius:26px;padding:18px;margin-bottom:12px}
-.roi{font-size:48px;font-weight:900;letter-spacing:-2px;line-height:1}
+.roi{white-space:nowrap;font-size:44px;font-weight:900;letter-spacing:-2px;line-height:1}
 .modal-bg{position:absolute;inset:0;background:rgba(15,31,23,.55);backdrop-filter:blur(3px);z-index:20;display:flex;align-items:flex-end;animation:fadebg .25s}
 @keyframes fadebg{from{opacity:0}}
 .modal{background:#fff;width:100%;border-radius:28px 28px 0 0;padding:20px 20px 28px;animation:up .35s cubic-bezier(.2,.8,.2,1);max-height:92%;overflow-y:auto}
@@ -945,18 +945,18 @@ function showMethod(){
 
 /* ============ POHĽAD PARTNERA ============ */
 function viewPartner(){
-  var cost=68, rev=96, roi=Math.round((rev-cost)/cost*100);
+  var cost=69, rev=101.5, roi=Math.round((rev-cost)/cost*100);
   var hours=[["7",18],["8",46],["9",38],["10",22],["11",17],["12",29],["13",24],["14",15],["15",19],["16",26],["17",12]], hmax=46;
   var bw=24,gap=6,H=110;
   var bars=hours.map(function(h,i){ var bh=Math.round(h[1]/hmax*H), x=i*(bw+gap); return '<rect x="'+x+'" y="'+(H-bh)+'" width="'+bw+'" height="'+bh+'" rx="6" fill="'+(h[1]===hmax?'#f97316':'#16a34a')+'"/><text x="'+(x+bw/2)+'" y="'+(H+14)+'" text-anchor="middle" font-size="10" fill="#64748b">'+h[0]+'</text>'; }).join("");
   var tops=[["Káva vo vlastnom pohári",58],["Rastlinné mlieko",21],["Bez papierového bločku",14],["Zachránené pečivo",7]];
   return '<div class="view"><div class="partner-hero"><div style="font-size:12px;font-weight:700;opacity:.85">PARTNER · Kafé Komenius</div><h1 style="color:#fff;margin:4px 0 12px">November 2026</h1>'+
-  '<div class="flex-between"><div><div style="font-size:12px;opacity:.85">ROI programu</div><div class="roi">+'+roi+' %</div></div><div style="text-align:right;font-size:12px;opacity:.9">Prínos '+eur(rev)+' (marža + poháre)<br>Náklady '+eur(cost)+' (poplatok 49 € + odmeny)</div></div></div>'+
+  '<div class="flex-between"><div><div style="font-size:12px;opacity:.85">ROI programu</div><div class="roi">+'+roi+' %</div></div><div style="text-align:right;font-size:12px;opacity:.9">Prínos '+eur(rev)+' (marža 94,50 + poháre 7)<br>Náklady '+eur(cost)+' (poplatok 49 + zľavy 20)</div></div></div>'+
   '<div class="grid2"><div class="kpi"><small>Noví zákazníci cez Zero Cap</small><b>45</b><em>+23 % m/m</em></div><div class="kpi"><small>Vracajúci sa zákazníci</small><b>41 %</b><em>vs. 27 % bez appky</em></div>'+
-  '<div class="kpi"><small>Ušetrené poháre</small><b>100</b><em>≈ 3 kg CO2e · −15 € na obaloch</em></div><div class="kpi"><small>Uplatnené vouchery</small><b>13</b><em>Ø košík 6,10 €</em></div></div>'+
-  '<div class="card" style="margin-top:12px"><b style="font-size:14px">Náklady na odmeny vs. extra tržby</b>'+
-  '<div style="margin-top:10px;font-size:12px"><div class="flex-between"><span>Náklady na odmeny</span><b>'+eur(cost)+'</b></div><div class="bar" style="margin:4px 0 10px"><i style="width:'+Math.round(cost/rev*100)+'%;background:#f97316"></i></div>'+
-  '<div class="flex-between"><span>Extra tržby od Zero Cap zákazníkov</span><b>'+eur(rev)+'</b></div><div class="bar" style="margin-top:4px"><i style="width:100%"></i></div></div></div>'+
+  '<div class="kpi"><small>Ušetrené poháre</small><b>100</b><em>≈ 2 kg CO2e · −7 € na obaloch</em></div><div class="kpi"><small>Uplatnené vouchery</small><b>13</b><em>Ø košík 6,10 €</em></div></div>'+
+  '<div class="card" style="margin-top:12px"><b style="font-size:14px">Náklady vs. prínos (mesačne)</b>'+
+  '<div style="margin-top:10px;font-size:12px"><div class="flex-between"><span>Náklady (poplatok + zľavy)</span><b>'+eur(cost)+'</b></div><div class="bar" style="margin:4px 0 10px"><i style="width:'+Math.round(cost/rev*100)+'%;background:#f97316"></i></div>'+
+  '<div class="flex-between"><span>Prínos (marža z nových návštev + poháre)</span><b>'+eur(rev)+'</b></div><div class="bar" style="margin-top:4px"><i style="width:100%"></i></div></div></div>'+
   '<div class="card"><b style="font-size:14px">Špičkové hodiny (eko akcie)</b><svg viewBox="0 0 '+(hours.length*(bw+gap))+' '+(H+18)+'" width="100%" style="margin-top:10px;display:block">'+bars+'</svg></div>'+
   '<div class="card"><b style="font-size:14px">Top eko položky</b>'+tops.map(function(t){return '<div style="margin-top:9px;font-size:13px"><div class="flex-between"><span>'+t[0]+'</span><b>'+t[1]+' %</b></div><div class="bar" style="margin-top:4px"><i style="width:'+t[1]+'%"></i></div></div>';}).join("")+'</div>'+
   '<div class="card"><b style="font-size:14px">💡 Nápady od komunity</b><p style="font-size:13px;margin-top:8px;color:var(--ink2)">„Zľava aj na čaj vo vlastnom pohári“ · „Zálohované poháre pri pokladni“ · „Vegánsky croissant“</p><p class="hint">'+(S.ideaSent?'Nový návrh pribudol práve teraz.':'12 návrhov tento mesiac')+'</p></div>'+
