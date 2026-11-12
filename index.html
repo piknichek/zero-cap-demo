@@ -545,7 +545,7 @@ function mapEkasa(id,json){
   });
   if(!mapped.length) return {err:["Bloček nemá položky","eKasa vrátila bloček bez položiek."]};
   var org=raw.organization||{}, unit=raw.unit||{};
-  var street=[unit.streetName||org.streetName, unit.buildingNumber||org.buildingNumber].filter(Boolean).join(" ");
+  var street=[unit.streetName||org.streetName, unit.buildingNumber||unit.propertyRegistrationNumber||org.buildingNumber||org.propertyRegistrationNumber].filter(Boolean).join(" ");
   var addr=[street, unit.municipality||org.municipality].filter(Boolean).join(", ");
   var p2=function(n){ return (n<10?"0":"")+n; };
   return {r:{ id:id, live:true, type:"live", digital:false,
